@@ -70,7 +70,7 @@ const MobileNo = () => {
               flexDirection: "column",
               alignItems: "center",
               padding: 3,
-              height:350
+              height:380
               
             }}
           >

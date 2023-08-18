@@ -23,6 +23,7 @@ const LandingPage = () => {
       justifyContent:'center',
       alignItems:'center',
     }}
+    loading="lazy"
   >
     <Button variant="contained" size="small" href="/home" sx={{fontSize:'20px',padding:'5px'}}>Create Account</Button>
   </div>
