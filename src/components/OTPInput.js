@@ -41,15 +41,6 @@ const OTPInput = () => {
   const classes = useStyles();
   const [otp, setOtp] = useState(["", "", "", "", "", ""]);
 
-  // const [open, setOpen] = useState(false);
-  // const [openf, setOpenf] = useState(true);
-  // const handleOpen = () => {
-  //   setOpen(true);
-  // };
-
-  // const handleClose = () => {
-  //   setOpen(false);
-  // };
   const handleInputChange = (index, value) => {
     if (/^\d{0,1}$/.test(value)) {
       const newOtp = [...otp];
@@ -62,31 +53,16 @@ const OTPInput = () => {
     }
   };
 
+  
+
   const inputRefs = [];
   const handleSubmit = () => {
     const otpValue = otp.join("");
-  //  setOpenf(false);
-  //  setOpen(true);
+    console.warn(otpValue)
   };
- 
+
   return (
-    
     <ThemeProvider theme={defaultTheme}>
-      {/* <Modal
-        open={open}
-        onClose={handleClose}
-        aria-labelledby="child-modal-title"
-        aria-describedby="child-modal-description"
-        
-      >
-        <Box sx={{ ...style, width: 200 }}>
-          <h2 id="child-modal-title">Text in a child modal</h2>
-          <p id="child-modal-description">
-            Lorem ipsum, dolor sit amet consectetur adipisicing elit.
-          </p>
-          <Button onClick={handleClose}>Close Child Modal</Button>
-        </Box>
-      </Modal> */}
       <Container component="main" maxWidth="xs">
         <CssBaseline />
         <Box
@@ -137,9 +113,6 @@ const OTPInput = () => {
             <form onSubmit={handleSubmit}>
               <Grid container spacing={2}>
                 <Box
-                  // component="form"
-                  noValidate
-                  // onSubmit={handleSubmit}
                   sx={{
                     mt: 4,
                     ml: 3,
@@ -182,7 +155,6 @@ const OTPInput = () => {
                 fullWidth
                 variant="contained"
                 color="secondary"
-                
                 sx={{ mt: 3, mb: 2, padding: "8px", fontSize: "15px" }}
               >
                 Verify OTP
@@ -190,7 +162,6 @@ const OTPInput = () => {
             </form>
           </Paper>
         </Box>
-        {/* <Copyright sx={{ mt: 5 }} /> */}
       </Container>
     </ThemeProvider>
   );

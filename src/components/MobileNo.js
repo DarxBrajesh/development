@@ -1,53 +1,51 @@
 import React, { useState } from "react";
-import Avatar from "@mui/material/Avatar";
-import Button from "@mui/material/Button";
-// import Select from "@mui/material/Select";
-import CssBaseline from "@mui/material/CssBaseline";
-import TextField from "@mui/material/TextField";
+import * as Yup from "yup";
+import { Form, useFormik } from "formik";
+import { useNavigate } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faHeartbeat } from "@fortawesome/free-solid-svg-icons";
-import Autocomplete from "@mui/material/Autocomplete";
-// import Link from "@mui/material/Link";
-import Grid from "@mui/material/Grid";
-import Box from "@mui/material/Box";
-// import { Formik, Form } from "formik";
-import * as Yup from "yup";
-import { useNavigate } from "react-router-dom";
-// import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
-import Typography from "@mui/material/Typography";
-import Container from "@mui/material/Container";
-import Paper from "@mui/material/Paper";
 
+import {
+  Avatar,
+  Button,
+  Box,
+  CssBaseline,
+  TextField,
+  Grid,
+  Typography,
+  Container,
+  Paper,
+  Autocomplete,
+} from "@mui/material";
+import { mobileValidation } from "../schemas";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 const defaultTheme = createTheme();
+const initialValues = {
+  countryCode: "+91",
+  phoneNumber: "",
+};
 
 const MobileNo = () => {
   const [countryCode, setCountryCode] = useState("+91");
-  const [phoneNumber, setPhoneNumber] = useState("");
+  // const [phoneNumber, setPhoneNumber] = useState("");
   let navigate = useNavigate();
-  const otpRouteChange = () => {
-    let path = `/otpinput`;
-    navigate(path);
-  };
- 
+  // const otpRouteChange = () => {
+  //   let path = `/otpinput`;
+  //   navigate(path);
+  // };
 
-  const validationSchema = Yup.object().shape({
-    countryCode: Yup.string().required("Country code is required"),
-    mobile: Yup.string()
-      .required("Mobile number is required")
-      .matches(/^\d{10}$/, "Mobile must be a 10-digit number"),
-  });
+  const { values, errors, handleBlur, handleChange, handleSubmit, touched } =
+    useFormik({
+      initialValues: initialValues,
+      validationSchema: mobileValidation,
+      validateOnChange: true,
+      validateOnBlur: false,
+      onSubmit: (values, action) => {
+        console.log(values);
+        action.resetForm();
+      },
+    });
 
-  const handleSubmit = (values, { setSubmitting }) => {
-    setSubmitting(false);
-  };
-  const handleCountryCodeChange = (e) => {
-    setCountryCode(e.target.value);
-  };
-
-  const handlePhoneNumberChange = (e) => {
-    setPhoneNumber(e.target.value);
-  };
   return (
     <ThemeProvider theme={defaultTheme}>
       <Container component="main" maxWidth="sm">
@@ -58,8 +56,7 @@ const MobileNo = () => {
             display: "flex",
             flexDirection: "column",
             alignItems: "center",
-            width:'100%',
-           
+            width: "100%",
           }}
         >
           <Paper
@@ -70,8 +67,7 @@ const MobileNo = () => {
               flexDirection: "column",
               alignItems: "center",
               padding: 3,
-              height:380
-              
+              height: 400,
             }}
           >
             <Avatar sx={{ m: 1, bgcolor: "secondary.main" }}>
@@ -80,21 +76,18 @@ const MobileNo = () => {
             <Typography component="h1" variant="h4">
               Enter your mobile number
             </Typography>
-            <Box
-              component="form"
-              noValidate
-              onSubmit={handleSubmit}
-              sx={{ mt: 3 }}
-            >
-              <Grid container spacing={1} sx={{width:500,}}>
+            <form onSubmit={handleSubmit} sx={{ mt: 3 }}>
+              <Grid container spacing={1} sx={{ width: 500 }}>
                 <Grid item xs={12} sm={6}>
                   <Autocomplete
                     id="country-select-demo"
                     name="countryCode"
+                    // value={values.countryCode}
+                    onChange={handleChange}
+                    onBlur={handleBlur}
                     options={countries}
                     autoHighlight
-                    onChange={handleCountryCodeChange}
-                    getOptionLabel={(option) => (option.code +-+ +option.phone)}
+                    getOptionLabel={(option) => option.code + -+option.phone}
                     renderOption={(props, option) => (
                       <Box
                         component="li"
@@ -108,7 +101,7 @@ const MobileNo = () => {
                           srcSet={`https://flagcdn.com/w40/${option.code.toLowerCase()}.png 2x`}
                           alt=""
                         />
-                        ({option.code}) +{option.phone}
+                        {option.code} + {option.phone}
                       </Box>
                     )}
                     renderInput={(params) => (
@@ -122,44 +115,47 @@ const MobileNo = () => {
                       />
                     )}
                   />
-                  
+                  {errors.countryCode && touched.countryCode ? (
+                    <p className="form-error">{errors.countryCode}</p>
+                  ) : null}
                 </Grid>
                 <Grid item xs={12} sm={6}>
                   <TextField
-                    required
+                    
                     fullWidth
-                    id="mobile"
+                    id="phoneNumber"
                     label="Mobile No."
-                    name="mobile"
-                    value={phoneNumber}
-                    onChange={handlePhoneNumberChange}
-                    autoComplete="mobile"
+                    name="phoneNumber"
+                    value={values.phoneNumber}
+                    onChange={handleChange}
+                    onBlur={handleBlur}
+                    autoComplete="phoneNumber"
                   />
+                  {errors.phoneNumber && touched.phoneNumber ? (
+                    <p className="form-error">{errors.phoneNumber}</p>
+                  ) : null}
                 </Grid>
-                
               </Grid>
-              <Typography component="h1" variant="h6" sx={{mt:1,padding:'5px',textAlign:'center'}}>When you tap "Send Otp", Luvsi will send a text with verification code.Message and data rates may apply.The verified phone can be used to login</Typography>
+              <Typography
+                component="h1"
+                variant="h6"
+                sx={{ mt: 1, padding: "5px", textAlign: "center" }}
+              >
+                When you tap "Send Otp", Luvsi will send a text with
+                verification code.Message and data rates may apply.The verified
+                phone can be used to login
+              </Typography>
               <Button
                 type="submit"
                 fullWidth
                 variant="contained"
-                
-                sx={{ mt: 3,mb:2,padding:'8px',fontSize:'15px' }}
-                onClick={otpRouteChange}
+                sx={{ mt: 3, mb: 2, padding: "8px", fontSize: "15px" }}
               >
                 Send OTP
               </Button>
-              {/* <Grid container justifyContent="flex-end">
-                <Grid item>
-                  <Link href="/mobileno" variant="body2">
-                    Already have an account? Sign in
-                  </Link>
-                </Grid>
-              </Grid> */}
-            </Box>
+            </form>
           </Paper>
         </Box>
-        {/* <Copyright sx={{ mt: 5 }} /> */}
       </Container>
     </ThemeProvider>
   );

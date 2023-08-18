@@ -19,3 +19,8 @@ export const profileForm = Yup.object({
     gender:Yup.string().required('plz select gender'),
     showGender:Yup.string().required('plz select show gender'),
 });
+export const mobileValidation = Yup.object({
+    countryCode:Yup.string().required('plz select country code'),
+    phoneNumber:Yup.string().min(10).max(10).matches(/^\d{10}$/, "Mobile must be a 10-digit number").required('plz enter your Phone No.'),
+    
+});
