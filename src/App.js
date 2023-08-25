@@ -16,8 +16,9 @@ import ProfileForm from "./components/ProfileForm";
 import Dashboard from "./components/Dashboard";
 import ChatComponent from "./components/ChatComponent";
 import ProfileSection from "./components/ProfileSection";
-import VideoCallComponent from "./components/VideoCallComponent";
+import VideoCallComponent from "./components/Video Chat/VideoChat";
 import LuvsiCardHandler from "./components/LuvsiCardHandler";
+import MapComponent from "./components/MapComponent";
 function App() {
   return (
     <div className="App grid-container">
@@ -38,6 +39,7 @@ function App() {
           <Route exact path="/chat" element={<ChatComponent/>} />
           <Route exact path="/video-call" element={<VideoCallComponent/>} />
           <Route exact path="/LuvsiCardHandler" element={<LuvsiCardHandler/>} />
+          <Route exact path="/map" element={<MapComponent/>} />
         </Routes>
         {/* <Footer className="header" /> */}
       </Router>
