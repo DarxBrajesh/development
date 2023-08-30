@@ -9,7 +9,7 @@ import Home from "./components/Home";
 import ForgetPassword from "./components/ForgetPassword";
 import RegistrationForm from "./components/RegistrationForm";
 import ResetPasswordForm from "./components/ResetPasswordForm";
-
+import LuvsiCards from "./components/LuvsiCards";
 import SignIn from "./components/SignIn";
 import LandingPage from "./components/LandingPage";
 import ProfileForm from "./components/ProfileForm";
@@ -17,8 +17,8 @@ import Dashboard from "./components/Dashboard";
 import ChatComponent from "./components/ChatComponent";
 import ProfileSection from "./components/ProfileSection";
 import VideoCallComponent from "./components/Video Chat/VideoChat";
-import LuvsiCardHandler from "./components/LuvsiCardHandler";
 import MapComponent from "./components/MapComponent";
+import SwipeButton from "./components/SwipeButton";
 function App() {
   return (
     <div className="App grid-container">
@@ -38,8 +38,9 @@ function App() {
           <Route exact path="/dashboard" element={<Dashboard/>} />
           <Route exact path="/chat" element={<ChatComponent/>} />
           <Route exact path="/video-call" element={<VideoCallComponent/>} />
-          <Route exact path="/LuvsiCardHandler" element={<LuvsiCardHandler/>} />
           <Route exact path="/map" element={<MapComponent/>} />
+          <Route exact path="/luvsiCard" element={<><LuvsiCards/> 
+          <SwipeButton/></>} />
         </Routes>
         {/* <Footer className="header" /> */}
       </Router>

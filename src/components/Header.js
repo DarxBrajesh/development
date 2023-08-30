@@ -6,7 +6,7 @@ import { makeStyles, useTheme } from '@material-ui/core/styles';
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import useScrollTrigger from '@mui/material/useScrollTrigger';
 
-import './style/Header.css';
+import '../styles/Header.css';
 const useStyles = makeStyles((theme) => ({
   appBar: {
     position:'relative',
