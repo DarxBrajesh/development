@@ -14,7 +14,7 @@ import SignIn from "./components/SignIn";
 import LandingPage from "./components/LandingPage";
 import ProfileForm from "./components/ProfileForm";
 import Dashboard from "./components/Dashboard";
-import ChatComponent from "./components/ChatComponent";
+import ChatContainer from "./components/ChatContainer";
 import ProfileSection from "./components/ProfileSection";
 import VideoCallComponent from "./components/Video Chat/VideoChat";
 import MapComponent from "./components/MapComponent";
@@ -36,7 +36,7 @@ function App() {
           <Route exact path="/profileform" element={<ProfileForm/>} />
           <Route exact path="/profilesection" element={<ProfileSection/>} />
           <Route exact path="/dashboard" element={<Dashboard/>} />
-          <Route exact path="/chat" element={<ChatComponent/>} />
+          <Route exact path="/chat" element={<ChatContainer/>} />
           <Route exact path="/video-call" element={<VideoCallComponent/>} />
           <Route exact path="/map" element={<MapComponent/>} />
           <Route exact path="/luvsiCard" element={<><LuvsiCards/> 
