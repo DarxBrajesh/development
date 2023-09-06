@@ -3,9 +3,11 @@ import { Button } from "@material-ui/core";
 import VideoCall from "./VideoCall";
 const VideoCallStart = ({ stream }) => {
   const [inCall, setInCall] = useState(false);
-  return ( <div style={{ height: "100%" }}>
+  return ( 
+  <div style={{ height: "80vh", 
+   width:'70%',border:'2px solid red' }}>
   {inCall ? (
-    <VideoCall setInCall={setInCall} />
+    <VideoCall setInCall={setInCall}  style={{marginTop:'20px'}}/>
   ) : (
     <Button
       variant="contained"
