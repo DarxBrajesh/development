@@ -2,8 +2,6 @@ import React from "react";
 import { useState } from "react";
 import LuvsiCard from "react-tinder-card";
 import "../styles/LuvsiCards.css";
-import { useEffect } from "react";
-import database from "../firebase";
 const LuvsiCards = () => {
   const [people, setPeople] = useState([
     {

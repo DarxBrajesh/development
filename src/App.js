@@ -1,4 +1,4 @@
-import Footer from "./components/Footer";
+
 import Header from "./components/Header";
 import OTPInput from "./components/OTPInput";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";

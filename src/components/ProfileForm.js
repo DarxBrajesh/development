@@ -109,7 +109,7 @@ const ProfileForm = () => {
                 item
                 xs={5}
                 key={index}
-                sx={{ display: "block", width: "100%", ml: 3 }}
+                sx={{ display: "block", width: "100%", ml: 1 }}
               >
                 <Card className={classes.imageCard}>
                   <CardMedia
