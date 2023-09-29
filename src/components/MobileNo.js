@@ -4,7 +4,7 @@ import { Form, useFormik } from "formik";
 import { useNavigate } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faHeartbeat } from "@fortawesome/free-solid-svg-icons";
-
+import Otp from "../screens/OTPInput";
 import {
   Avatar,
   Button,
@@ -29,10 +29,6 @@ const MobileNo = () => {
   const [countryCode, setCountryCode] = useState("+91");
   // const [phoneNumber, setPhoneNumber] = useState("");
   let navigate = useNavigate();
-  // const otpRouteChange = () => {
-  //   let path = `/otpinput`;
-  //   navigate(path);
-  // };
 
   const { values, errors, handleBlur, handleChange, handleSubmit, touched } =
     useFormik({
@@ -42,6 +38,11 @@ const MobileNo = () => {
       validateOnBlur: false,
       onSubmit: (values, action) => {
         console.log(values);
+        if (values.phoneNumber !== "") {
+          window.sessionStorage.setItem("mobile", values.phoneNumber);
+          // window.location.href = "/otpinput";
+          navigate("/otpinput");
+        }
         action.resetForm();
       },
     });
@@ -121,7 +122,6 @@ const MobileNo = () => {
                 </Grid>
                 <Grid item xs={12} sm={6}>
                   <TextField
-                    
                     fullWidth
                     id="phoneNumber"
                     label="Mobile No."

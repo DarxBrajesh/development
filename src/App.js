@@ -1,23 +1,24 @@
 
 import Header from "./components/Header";
-import OTPInput from "./components/OTPInput";
+import OTPInput from "./screens/OTPInput";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import "./index.css";
 import MobileNo from "./components/MobileNo";
 import Home from "./components/Home";
-import ForgetPassword from "./components/ForgetPassword";
-import RegistrationForm from "./components/RegistrationForm";
-import ResetPasswordForm from "./components/ResetPasswordForm";
+import ForgetPassword from "./screens/ForgetPassword";
+import RegistrationForm from "./screens/RegistrationForm";
+import ResetPasswordForm from "./screens/ResetPasswordForm";
 import LuvsiCards from "./components/LuvsiCards";
-import SignIn from "./components/SignIn";
+import SignIn from "./screens/SignIn";
 import LandingPage from "./components/LandingPage";
-import ProfileForm from "./components/ProfileForm";
+import ProfileForm from "./screens/ProfileForm";
 import Dashboard from "./components/Dashboard";
-import ChatContainer from "./components/ChatContainer";
-import ProfileSection from "./components/ProfileSection";
+import ChatPreview from "./components/chat/Home";
+import ProfileSection from "./screens/ProfileSection";
 import MapComponent from "./components/MapComponent";
 import SwipeButton from "./components/SwipeButton";
 import VideoCallStart from "./components/Video Chat/VideoCallStart";
+import AudioCall from "./components/AudioCall";
 function App() {
   return (
     <div className="App grid-container">
@@ -35,10 +36,12 @@ function App() {
           <Route exact path="/profileform" element={<ProfileForm/>} />
           <Route exact path="/profilesection" element={<ProfileSection/>} />
           <Route exact path="/dashboard" element={<Dashboard/>} />
-          <Route exact path="/chat" element={<ChatContainer/>} />
+          <Route exact path="/chat" element={<ChatPreview/>} />
           <Route exact path="/video-call" element={<VideoCallStart/>} />
+          <Route exact path="/audio-call" element={<AudioCall/>} />
           <Route exact path="/map" element={<MapComponent/>} />
-          <Route exact path="/luvsiCard" element={<><LuvsiCards/> 
+          <Route exact path="/luvsiCard" element={<><LuvsiCards/>
+           
           <SwipeButton/></>} />
         </Routes>
         {/* <Footer className="header" /> */}

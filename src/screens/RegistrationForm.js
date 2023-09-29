@@ -1,4 +1,4 @@
-import * as React from "react";
+import  React from "react";
 import {
   Avatar,
   Button,
@@ -9,11 +9,11 @@ import {
   Typography,
   Container,
   Paper,
+  Box,
 } from "@mui/material";
 
 import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
-
-import { Form, useFormik } from "formik";
+import { Form,useFormik } from "formik";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import { signUpSchema } from "../schemas";
 const defaultTheme = createTheme();
@@ -21,8 +21,9 @@ const initialValues = {
   firstName: "",
   lastName: "",
   email: "",
-  password: "",
   mobile: "",
+  password: "",
+  
 };
 const RegistrationForm = () => {
   const { values, errors, handleBlur, handleChange, handleSubmit, touched } =
@@ -33,15 +34,16 @@ const RegistrationForm = () => {
       validateOnBlur: false,
       onSubmit: (values, action) => {
         console.log(values);
+       
         action.resetForm();
       },
     });
 
   return (
     <ThemeProvider theme={defaultTheme}>
-      <Container component="main" maxWidth="xs">
+      <Container component="main" maxWidth="sm">
         <CssBaseline />
-        <Form
+        <Box
           sx={{
             marginTop: 4,
             display: "flex",
@@ -62,10 +64,10 @@ const RegistrationForm = () => {
             <Avatar sx={{ m: 1, bgcolor: "secondary.main" }}>
               <LockOutlinedIcon />
             </Avatar>
-            <Typography component="h1" variant="h5">
+            <Typography component="h1" variant="h5" sx={{m:1}}>
               Sign up
             </Typography>
-            <form onSubmit={handleSubmit} sx={{ mt: 3 }}>
+            <form onSubmit={handleSubmit} sx={{ mt:3 }}>
               <Grid container spacing={2}>
                 <Grid item xs={12} sm={6}>
                   <TextField
@@ -161,7 +163,7 @@ const RegistrationForm = () => {
               </Grid>
             </form>
           </Paper>
-        </Form>
+        </Box>
       </Container>
     </ThemeProvider>
   );

@@ -15,7 +15,7 @@ import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
 import Paper from "@mui/material/Paper";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
-
+import { useNavigate } from "react-router-dom";
 const defaultTheme = createTheme();
 const useStyles = makeStyles((theme) => ({
   modal: {
@@ -40,7 +40,7 @@ const style = {
 const OTPInput = () => {
   const classes = useStyles();
   const [otp, setOtp] = useState(["", "", "", "", "", ""]);
-
+  let navigate = useNavigate();
   const handleInputChange = (index, value) => {
     if (/^\d{0,1}$/.test(value)) {
       const newOtp = [...otp];
@@ -53,12 +53,13 @@ const OTPInput = () => {
     }
   };
 
-  
-
   const inputRefs = [];
   const handleSubmit = () => {
     const otpValue = otp.join("");
-    console.warn(otpValue)
+    console.warn(otpValue);
+    if (otpValue !== "") {
+      navigate("/profilesection");
+    }
   };
 
   return (
@@ -99,7 +100,7 @@ const OTPInput = () => {
                 sm={6}
                 sx={{ textAlign: "center", fontSize: "15px" }}
               >
-                +1234567890
+                +{window.sessionStorage.getItem("mobile")}
               </Grid>
               <Grid
                 item

@@ -1,4 +1,4 @@
-import * as React from "react";
+import React from "react";
 import {
   Avatar,
   Button,
@@ -13,9 +13,10 @@ import {
   Checkbox,
   Box,
 } from "@mui/material";
+import { useNavigate } from "react-router-dom";
 import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
-import { Form,useFormik } from "formik";
+import { Form, useFormik } from "formik";
 import { signInSchema } from "../schemas";
 const defaultTheme = createTheme();
 const initialValues = {
@@ -23,6 +24,7 @@ const initialValues = {
   password: "",
 };
 const SignIn = () => {
+  let navigate = useNavigate();
   const { values, errors, handleBlur, handleChange, handleSubmit, touched } =
     useFormik({
       initialValues: initialValues,
@@ -31,13 +33,19 @@ const SignIn = () => {
       validateOnBlur: false,
       onSubmit: (values, action) => {
         console.log(values);
+        if (values.email !== "") {
+          window.sessionStorage.setItem("email", values.email);
+          window.sessionStorage.setItem("pass", values.password);
+          // window.location.href = "/profilesection";
+          navigate("/profilesection");
+        }
         action.resetForm();
       },
     });
 
   return (
     <ThemeProvider theme={defaultTheme}>
-      <Container component="main" maxWidth="xs">
+      <Container component="main" maxWidth="sm">
         <CssBaseline />
         <Box
           sx={{
@@ -63,7 +71,7 @@ const SignIn = () => {
             <Typography component="h1" variant="h5">
               Sign in
             </Typography>
-            <form onSubmit={handleSubmit} sx={{ mt: 1 }}>
+            <form onSubmit={handleSubmit} sx={{ mt: 2 }}>
               <TextField
                 margin="normal"
                 fullWidth
@@ -74,7 +82,6 @@ const SignIn = () => {
                 value={values.email}
                 onChange={handleChange}
                 onBlur={handleBlur}
-               
               />
               {errors.email && touched.email ? (
                 <p className="form-error">{errors.email}</p>
@@ -114,6 +121,7 @@ const SignIn = () => {
                 </Grid>
                 <Grid item>
                   <Link href="/sign-up" variant="body2">
+                    {/* <Link href="/forgetpassword" variant="body2"> */}
                     {"Don't have an account? Sign Up"}
                   </Link>
                 </Grid>
