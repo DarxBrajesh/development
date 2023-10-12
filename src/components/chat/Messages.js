@@ -71,11 +71,17 @@ const Messages = (props) => {
 
   return (
     <>
-      <div>
+      <div
+        style={{
+          height: "80vh",
+          overflow: "scroll",
+          scrollbarWidth: "none",
+        }}
+      >
         {messages.map((item, index) => (
-          <div key={index}>
+          <div key={index} style={{ padding: "30px", overflow: "scroll" }}>
             item.senderName ?
-            <p style={{ textAlign: "end", color: "green" }}>
+            <p style={{ textAlign: "end", color: "green", fontSize: "25px" }}>
               {item.senderName}
             </p>
             :<p>{item.senderName}</p>

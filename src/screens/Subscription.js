@@ -1,4 +1,4 @@
-import * as React from "react";
+import React, { useState } from "react";
 import Grid from "@mui/material/Grid";
 import Paper from "@mui/material/Paper";
 import Box from "@mui/material/Box";
@@ -38,13 +38,26 @@ const Item = styled(Paper)(({ theme }) => ({
   textAlign: "center",
   color: theme.palette.text.secondary,
 }));
-function Subscription() {
+function Subscription({ sendDataToParent }) {
   const classes = useStyles();
+  const [childData, setChildData] = useState("");
+
+  const DataToParentOnClick = () => {
+    sendDataToParent(childData);
+  };
   return (
     <Grid container spacing={2}>
       <Grid item xs={12}>
         <Box className={classes.boxStyle}>
-          <Paper elevation={6} className={classes.cardStyle} sx={{ mt: 3 }}>
+          <Paper
+            elevation={6}
+            className={classes.cardStyle}
+            sx={{ mt: 3 }}
+            onClick={() => {
+              setChildData("Platinum");
+              DataToParentOnClick();
+            }}
+          >
             <Box>
               <p>
                 Luvsi
@@ -62,7 +75,14 @@ function Subscription() {
               <p>Level up every action you take on Luvsi</p>
             </Box>
           </Paper>
-          <Paper elevation={6} className={classes.cardStyle}>
+          <Paper
+            elevation={6}
+            className={classes.cardStyle}
+            onClick={() => {
+              setChildData("Gold");
+              DataToParentOnClick();
+            }}
+          >
             <Box>
               <p>
                 Luvsi
@@ -80,7 +100,14 @@ function Subscription() {
               <p>See Who Likes You & More</p>
             </Box>
           </Paper>
-          <Paper elevation={6} className={classes.cardStyle}>
+          <Paper
+            elevation={6}
+            className={classes.cardStyle}
+            onClick={() => {
+              setChildData("Plus");
+              DataToParentOnClick();
+            }}
+          >
             <Box>
               <p>Luvsi</p>
               <p>Unlimited Likes & More</p>
@@ -95,7 +122,12 @@ function Subscription() {
         </Box>
         <Grid container spacing={2} sx={{ p: 1, marginTop: "-50px" }}>
           <Grid item xs={6} md={6}>
-            <Paper elevation={6} className={classes.cardStyle} sx={{ mt: 3 }}>
+            <Paper
+              elevation={6}
+              className={classes.cardStyle}
+              sx={{ mt: 3 }}
+              onClick={DataToParentOnClick}
+            >
               <div style={{ display: "block" }}>
                 <Brightness7Icon
                   color="success"

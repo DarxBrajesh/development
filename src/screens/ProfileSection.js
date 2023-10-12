@@ -29,8 +29,11 @@ import LaunchIcon from "@mui/icons-material/Launch";
 import KeyboardArrowRightIcon from "@mui/icons-material/KeyboardArrowRight";
 import SwipeButton from "../components/SwipeButton";
 import LuvsiCards from "../components/LuvsiCards";
-import ProfileForm from "./ProfileForm";
+// import ProfileForm from "./ProfileForm";
 import Subscription from "./Subscription";
+import GoldSubscription from "../components/subscription/GoldSubscription";
+import PlatinumSubscription from "../components/subscription/PlatinumSubscription";
+import PlusCard from "../components/subscription/PlusCard";
 const drawerWidth = 340;
 
 const openedMixin = (theme) => ({
@@ -111,17 +114,27 @@ const ProfileSection = () => {
   const theme = useTheme();
   const [open, setOpen] = useState(true);
   const [menudata, setMenudata] = useState("cards");
+  const [dataFromChild, setDataFromChild] = useState(null);
   const [isSecondaryVisible, setSecondaryVisible] = useState(false);
   let Email = window.sessionStorage.getItem("email");
-  console.log(Email, "eeee...");
+
   const handleDrawerClose = () => {
     setOpen(false);
   };
+
+  let kk = sessionStorage.getItem("goldSubscription");
+  console.log(kk);
 
   const [checked, setChecked] = useState(["range"]);
   const handleClick = () => {
     setSecondaryVisible(!isSecondaryVisible);
   };
+
+  const receiveDataFromChild = (data) => {
+    setDataFromChild(data);
+    setMenudata("");
+  };
+
   const handleToggle = (value) => () => {
     const currentIndex = checked.indexOf(value);
     const newChecked = [...checked];
@@ -165,7 +178,7 @@ const ProfileSection = () => {
           </DrawerHeader>
 
           <Divider />
-          <Subscription />
+          <Subscription sendDataToParent={receiveDataFromChild} />
           <h3 style={{ paddingLeft: "15px", background: "#f0f2f4" }}>
             Discovery Settings
           </h3>
@@ -507,8 +520,15 @@ const ProfileSection = () => {
           </List>
         </Drawer>
 
-        <Box component="main" sx={{ flexGrow: 1, p: 3 }}>
-          {menudata === "profileForm" && <ProfileForm />}
+        <Box
+          component="main"
+          sx={{ flexGrow: 1, p: 2 }}
+          style={{ marginTop: "80px" }}
+        >
+          {/* {menudata === "profileForm" && <ProfileForm />} */}
+          {dataFromChild === "Gold" && <GoldSubscription />}
+          {dataFromChild === "Platinum" && <PlatinumSubscription />}
+          {dataFromChild === "Plus" && <PlusCard />}
           {menudata === "cards" && <LuvsiCards />}
         </Box>
       </Box>

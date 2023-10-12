@@ -1,7 +1,7 @@
 import React from "react";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import { makeStyles } from "@material-ui/core";
-import img from "../assets/datingimg.jpg";
+import img from "../assets/valentine-s-day.png";
 import Button from "@mui/material/Button";
 const useStyles = makeStyles((theme) => ({}));
 
@@ -25,7 +25,7 @@ const LandingPage = () => {
         variant="contained"
         size="small"
         href="/home"
-        sx={{ fontSize: "20px", padding: "5px" }}
+        sx={{ fontSize: "20px", padding: "5px", background: "#e86350e8" }}
       >
         Create Account
       </Button>
