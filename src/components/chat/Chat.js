@@ -10,16 +10,12 @@ import { Navigate } from "react-router-dom";
 // import { ChatContext } from "../context/ChatContext";
 
 const Chat = () => {
- 
   // const { data } = useContext(ChatContext);
   const Videocall = () => {
-    
-    window.location.href = '/video-call';
-   
+    window.location.href = "/video-call";
   };
   const Audiocall = () => {
-    window.location.href = '/audio-call';
-   
+    window.location.href = "/audio-call";
   };
   return (
     <div className="chat">

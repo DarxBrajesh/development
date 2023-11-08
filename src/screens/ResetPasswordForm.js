@@ -9,7 +9,9 @@ import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
 import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
 import Paper from "@mui/material/Paper";
+import img from "../assets/home.png";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
+import Header from "../components/Header";
 const defaultTheme = createTheme();
 const ResetPasswordForm = () => {
   const [password, setPassword] = useState("");
@@ -29,8 +31,13 @@ const ResetPasswordForm = () => {
   };
   return (
     <ThemeProvider theme={defaultTheme}>
-      <Container component="main" maxWidth="xs">
+      <Container
+        component="main"
+        maxWidth="false"
+        style={{ backgroundImage: `url(${img})`, height: "100vh" }}
+      >
         <CssBaseline />
+        <Header />
         <Box
           sx={{
             marginTop: 4,
@@ -39,14 +46,27 @@ const ResetPasswordForm = () => {
             alignItems: "center",
           }}
         >
-          <Paper
+          <div
             elevation={3}
-            sx={{
-              marginTop: 4,
+            // sx={{
+            //   marginTop: 4,
+            //   display: "flex",
+            //   flexDirection: "column",
+            //   alignItems: "center",
+            //   padding: 3,
+            // }}
+            style={{
+              marginTop: "25px",
               display: "flex",
               flexDirection: "column",
               alignItems: "center",
-              padding: 3,
+              padding: "30px",
+              // backgroundColor: "rgba(255, 255, 255, 0.5)",
+              opacity: 0.9,
+              borderWidth: "2px",
+              borderStyle: "dashed",
+              borderColor: "#fff",
+              width: "50%",
             }}
           >
             <Avatar sx={{ m: 1, bgcolor: "secondary.main" }}>
@@ -90,12 +110,12 @@ const ResetPasswordForm = () => {
                 variant="contained"
                 color="primary"
                 fullWidth
-                style={{ marginTop: "20px",padding:'10px',fontSize:'15px' }}
+                style={{ marginTop: "20px", padding: "10px", fontSize: "15px" }}
               >
                 Reset Password
               </Button>
             </Box>
-          </Paper>
+          </div>
         </Box>
         {/* <Copyright sx={{ mt: 5 }} /> */}
       </Container>

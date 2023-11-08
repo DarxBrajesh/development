@@ -14,8 +14,11 @@ import { faHeartbeat } from "@fortawesome/free-solid-svg-icons";
 import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
 import Paper from "@mui/material/Paper";
+import img from "../assets/home.png";
+import Heart from "../assets/heart.png";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import { useNavigate } from "react-router-dom";
+import Header from "../components/Header";
 const defaultTheme = createTheme();
 const useStyles = makeStyles((theme) => ({
   modal: {
@@ -64,8 +67,13 @@ const OTPInput = () => {
 
   return (
     <ThemeProvider theme={defaultTheme}>
-      <Container component="main" maxWidth="xs">
+      <Container
+        component="main"
+        maxWidth="false"
+        style={{ backgroundImage: `url(${img})`, height: "100vh" }}
+      >
         <CssBaseline />
+        <Header />
         <Box
           sx={{
             marginTop: 4,
@@ -74,23 +82,34 @@ const OTPInput = () => {
             alignItems: "center",
           }}
         >
-          <Paper
+          <div
             elevation={3}
-            sx={{
-              marginTop: 4,
+            // sx={{
+            //   marginTop: 4,
+            //   display: "flex",
+            //   flexDirection: "column",
+            //   alignItems: "center",
+            //   padding: 2,
+            //   justifyContent: "center",
+            //   textAlign: "center",
+            //   // marginLeft: 1,
+            // }}
+            style={{
+              marginTop: "25px",
               display: "flex",
               flexDirection: "column",
               alignItems: "center",
-              padding: 2,
-              justifyContent: "center",
-              textAlign: "center",
-              // marginLeft: 1,
+              padding: "40px",
+              // backgroundColor: "rgba(255, 255, 255, 0.5)",
+              opacity: 0.9,
+              borderWidth: "2px",
+              borderStyle: "dashed",
+              borderColor: "#fff",
+              width: "40%",
             }}
           >
-            <Avatar sx={{ m: 1, bgcolor: "secondary.main", fontSize: "20px" }}>
-              <FontAwesomeIcon icon={faHeartbeat} />
-            </Avatar>
-            <Typography component="h1" variant="h3">
+            <img src={Heart} alt="" />
+            <Typography component="h1" variant="h3" style={{ color: "#fff" }}>
               Enter your code
             </Typography>
             <Grid container spacing={2} sx={{ mt: 2, marginLeft: "1px" }}>
@@ -105,10 +124,10 @@ const OTPInput = () => {
               <Grid
                 item
                 xs={12}
-                sm={6}
+                sm={5}
                 sx={{ textAlign: "center", fontSize: "15px" }}
               >
-                <Link>Resend Code</Link>
+                <Link style={{ color: "#fff" }}>Resend Code</Link>
               </Grid>
             </Grid>
             <form onSubmit={handleSubmit}>
@@ -132,7 +151,11 @@ const OTPInput = () => {
                       name="otp"
                       type="text"
                       maxLength="1"
-                      style={{ width: "40px", textAlign: "center" }}
+                      style={{
+                        width: "40px",
+                        textAlign: "center",
+                        border: "1px solid #fff",
+                      }}
                       value={value}
                       onChange={(event) =>
                         handleInputChange(index, event.target.value)
@@ -140,28 +163,38 @@ const OTPInput = () => {
                     />
                   ))}
                 </Box>
+              </Grid>
+              <div>
                 <Link
                   href="/mobileno"
                   sx={{
                     textDecoration: "none",
                     cursor: "pointer",
                     marginLeft: "20px",
+                    color: "#fff",
                   }}
                 >
                   Update contact info
                 </Link>
-              </Grid>
+              </div>
               <Button
                 type="submit"
                 fullWidth
                 variant="contained"
                 color="secondary"
-                sx={{ mt: 3, mb: 2, padding: "8px", fontSize: "15px" }}
+                sx={{
+                  mt: 3,
+                  mb: 2,
+                  padding: "8px",
+                  fontSize: "15px",
+                  background: "#fff",
+                  color: "red",
+                }}
               >
                 Verify OTP
               </Button>
             </form>
-          </Paper>
+          </div>
         </Box>
       </Container>
     </ThemeProvider>

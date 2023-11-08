@@ -86,7 +86,7 @@ const Input = () => {
     // setImg(null);
   };
   return (
-    <div className="input">
+    <div className="input" style={{ borderTop: "2px solid red" }}>
       <input
         type="text"
         placeholder="Type something..."
@@ -108,7 +108,18 @@ const Input = () => {
         {/* <label htmlFor="file">
           <img src={Img} alt="" />
         </label> */}
-        <button onClick={handleSend}>Send</button>
+        <button
+          onClick={handleSend}
+          style={{
+            background: "red",
+            color: "#f1f1f1",
+            borderRadius: "5px",
+            padding: "10px",
+            width: "100px",
+          }}
+        >
+          Send
+        </button>
       </div>
     </div>
   );

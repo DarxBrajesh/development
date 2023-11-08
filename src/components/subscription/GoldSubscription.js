@@ -8,6 +8,7 @@ import {
 } from "@mui/material";
 import { Grid } from "@mui/material";
 import React, { useState } from "react";
+import img from "../../assets/home.png";
 import { makeStyles } from "@material-ui/core";
 const useStyles = makeStyles({
   cardStyle: {
@@ -58,7 +59,11 @@ const GoldSubscription = () => {
     SetIsSelected(event.target.value);
   };
   return (
-    <Grid container spacing={2}>
+    <Grid
+      container
+      spacing={2}
+      style={{ background: `url(${img}) center center/cover` }}
+    >
       <Grid item xs={7}>
         <div
           style={{

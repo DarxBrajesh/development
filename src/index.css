@@ -1,21 +1,20 @@
 body {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
+    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
 code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
 }
 .form-error {
   font-size: 1rem;
   color: #b22b27;
 }
-
 
 /*-------- Auth Modal --------*/
 .auth-modal {
@@ -41,8 +40,8 @@ code {
   flex-direction: column;
 }
 
-.auth-modal input[type=password],
-.auth-modal input[type=email] {
+.auth-modal input[type="password"],
+.auth-modal input[type="email"] {
   padding: 8px;
   margin: 8px;
   font-size: 17px;
@@ -101,28 +100,28 @@ code {
   margin-right: 10px;
 }
 
-.onboarding form input[type=radio] {
+.onboarding form input[type="radio"] {
   display: none;
 }
 
-.onboarding form input[type=number] {
+.onboarding form input[type="number"] {
   width: 10%;
 }
 
-.onboarding form input[type=radio]:checked + label {
+.onboarding form input[type="radio"]:checked + label {
   border: solid 2px rgb(221, 39, 22);
 }
 
-.onboarding form input[type=submit]:hover {
+.onboarding form input[type="submit"]:hover {
   background-color: rgb(235, 235, 235);
 }
 
-.onboarding form input[type=submit]:active {
+.onboarding form input[type="submit"]:active {
   background-color: rgb(226, 115, 115);
 }
 
 .onboarding form .photo-container img {
-  width: 100%
+  width: 100%;
 }
 
 /*-------- Dashboard  --------*/
@@ -171,7 +170,7 @@ code {
 .chat-container {
   background-color: rgb(255, 255, 255);
   box-shadow: rgba(0, 0, 0, 0.05) 0px 6px 24px 0px,
-  rgba(0, 0, 0, 0.08) 0px 0px 0px 1px;
+    rgba(0, 0, 0, 0.08) 0px 0px 0px 1px;
   width: 30%;
   text-align: left;
   z-index: 1;
@@ -233,24 +232,21 @@ code {
   flex-direction: column;
 }
 
-
-
-
 @mixin mobile {
-    @media screen and (max-width: 480px) {
-      @content;
-    }
+  @media screen and (max-width: 480px) {
+    @content;
   }
-  @mixin tablet {
-    @media screen and (max-width: 768px) {
-      @content;
-    }
+}
+@mixin tablet {
+  @media screen and (max-width: 768px) {
+    @content;
   }
-  @mixin laptop {
-    @media screen and (max-width: 1200px) {
-      @content;
-    }
+}
+@mixin laptop {
+  @media screen and (max-width: 1200px) {
+    @content;
   }
+}
 
 .formContainer {
   background-color: #a7bcff;
@@ -272,7 +268,6 @@ code {
       color: #5d5b8d;
       font-weight: bold;
       font-size: 24px;
-
     }
 
     .title {
@@ -333,288 +328,306 @@ code {
   justify-content: center;
   margin: 0;
 }
-  .container {
-    border: 1px solid white;
-    /* border-radius: 10px; */
-    width: 100%;
-    height: 100vh;
+.container {
+  border: 1px solid white;
+  /* border-radius: 10px; */
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  overflow: hidden;
+  margin-top: 0;
+  @include tablet {
+    width: 90%;
+  }
+}
+.sidebar {
+  flex: 0.5;
+  /* background-color: #3e3c61; */
+  background-color: "transparent";
+  position: relative;
+  border-right: 2px solid #f1f1f1;
+
+  .navbar {
     display: flex;
-    overflow: hidden;
-    margin-top: 0;
+    align-items: center;
+    /* background-color: #2f2d52; */
+    background-color: "transparent";
+    border-bottom: 2px solid #f1f1f1;
+
+    height: 50px;
+    padding: 10px;
+    justify-content: space-between;
+    color: #ddddf7;
+  }
+  .logo {
+    font-weight: bold;
     @include tablet {
-     width: 90%;
+      display: none;
     }
   }
-    .sidebar {
-      flex: 0.5;
-      background-color: #3e3c61;
-      position: relative;
 
-      .navbar {
-        display: flex;
-        align-items: center;
-        background-color: #2f2d52;
-        height: 50px;
-        padding: 10px;
-        justify-content: space-between;
-        color: #ddddf7;
+  .user {
+    display: flex;
+    gap: 10px;
+  }
+  .userChat img {
+    background-color: #ddddf7;
+    height: 24px !important;
+    width: 24px !important;
+    border-radius: 50%;
+    object-fit: cover;
+  }
+  .user img {
+    background-color: #ddddf7;
+    height: 24px !important;
+    width: 24px !important;
+    border-radius: 50%;
+    object-fit: cover;
+  }
+
+  .user button {
+    /* background-color: #5d5b8d; */
+    background-color: #f1f1f1;
+    color: #b22b27;
+    border-radius: 5px;
+    /* color: #ddddf7; */
+    font-size: 10px;
+    border: none;
+    cursor: pointer;
+    @include tablet {
+      position: absolute;
+      bottom: 10px;
+    }
+  }
+
+  .search {
+    border-bottom: 1px solid gray;
+  }
+  .searchForm {
+    padding: 10px;
+  }
+  .searchForm input {
+    background-color: transparent;
+    border: none;
+    color: white;
+    outline: none;
+
+    &::placeholder {
+      color: lightgray;
+    }
+  }
+
+  .userChat {
+    padding: 10px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    color: white;
+    cursor: pointer;
+
+    &:hover {
+      background-color: #2f2d52;
+    }
+
+    img {
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      object-fit: cover;
+    }
+
+    .userChatInfo {
+      span {
+        font-size: 18px;
+        font-weight: 500;
       }
-        .logo {
-          font-weight: bold;
-          @include tablet {
-            display: none;
-          }
-        }
-
-        .user {
-          display: flex;
-          gap: 10px;
-        }
-        .userChat img {
-          background-color: #ddddf7;
-          height: 24px !important;
-          width: 24px !important;
-          border-radius: 50%;
-          object-fit: cover;
-        }
-        .user img {
-            background-color: #ddddf7;
-            height: 24px !important;
-            width: 24px !important;
-            border-radius: 50%;
-            object-fit: cover;
-          }
-
-          .user button {
-            background-color: #5d5b8d;
-            color: #ddddf7;
-            font-size: 10px;
-            border: none;
-            cursor: pointer;
-            @include tablet {
-              position: absolute;
-              bottom: 10px;
-            }
-          }
-        
-     
-      .search {
-        border-bottom: 1px solid gray;
-      }
-        .searchForm {
-          padding: 10px;
-        }
-        .searchForm  input {
-            background-color: transparent;
-            border: none;
-            color: white;
-            outline: none;
-
-            &::placeholder {
-              color: lightgray;
-            }
-          }
-      
-          
-
-      .userChat {
-        padding: 10px;
-        display: flex;
-        align-items: center;
-        gap: 10px;
-        color: white;
-        cursor: pointer;
-        
-
-        &:hover {
-          background-color: #2f2d52;
-        }
-
-        img {
-          width: 50px;
-          height: 50px;
-          border-radius: 50%;
-          object-fit: cover;
-        }
-
-        .userChatInfo {
-          span {
-            font-size: 18px;
-            font-weight: 500;
-            
-          }
-          p {
-            font-size: 14px;
-            color: lightgray;
-          }
-        }
+      p {
+        font-size: 14px;
+        color: lightgray;
       }
     }
-    .chat {
-      flex: 2;
-position: relative;
-      .chatInfo {
-        height: 50px;
-        background-color: #5d5b8d;
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        padding: 10px;
-        color: lightgray;
-        
+  }
+}
+.chat {
+  flex: 2;
+  position: relative;
+  .chatInfo {
+    height: 50px;
+    /* background-color: #5d5b8d; */
+    background-color: "transparent";
+    border-bottom: 2px solid #f1f1f1;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px;
+    /* color: #f1f1f1; */
+  }
+
+  .chatIcons {
+    display: flex;
+    gap: 10px;
+
+    img {
+      height: 24px;
+      cursor: pointer;
+      /* color: #f1f1f1; */
+    }
+  }
+
+  .messages {
+    /* background-color: #ddddf7; */
+    padding: 10px;
+    height: calc(100% - 160px);
+    overflow: scroll;
+  }
+
+  .message {
+    display: flex;
+    gap: 20px;
+    margin-bottom: 20px;
+    border: 2px solid red;
+  }
+  .messageInfo {
+    display: flex;
+    flex-direction: column;
+    color: gray;
+    font-weight: 300;
+  }
+  .messageInfo img {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    object-fit: cover;
+  }
+
+  .messageContent {
+    max-width: 80%;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+  .messageContent p {
+    background-color: white;
+    padding: 10px 20px;
+    border-radius: 0px 10px 10px 10px;
+    max-width: max-content;
+  }
+
+  .messageContent img {
+    width: 50%;
+  }
+
+  &.owner {
+    flex-direction: row-reverse;
+
+    .messageContent {
+      align-items: flex-end;
+      p {
+        /* background-color: #8da4f1; */
+        color: white;
+        border-radius: 10px 0px 10px 10px;
       }
+    }
+  }
+}
 
-      .chatIcons {
-        display: flex;
-        gap: 10px;
+.input {
+  bottom: 0;
+  height: 50px;
+  /* margin-top: 63%; */
+  background-color: white;
+  padding: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.input input {
+  width: 100%;
+  border: none;
+  outline: none;
+  color: #2f2d52;
+  font-size: 18px;
 
-        img {
-          height: 24px;
-          cursor: pointer;
-        }
-      }
+  &::placeholder {
+    color: lightgray;
+  }
+}
 
-      .messages {
-        /* background-color: #ddddf7; */
-        padding: 10px;
-        height: calc(100% - 160px);
-        overflow: scroll;
-      }
+.send {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.send img {
+  height: 24px;
+  cursor: pointer;
+}
 
-        .message {
-          display: flex;
-          gap: 20px;
-          margin-bottom: 20px;
-          border: 2px solid red;
-        }
-          .messageInfo {
-            display: flex;
-            flex-direction: column;
-            color: gray;
-            font-weight: 300;
-           
-          }
-          .messageInfo img {
-              width: 40px;
-              height: 40px;
-              border-radius: 50%;
-              object-fit: cover;
-            }
-          
-          .messageContent {
-            max-width: 80%;
-            display: flex;
-            flex-direction: column;
-            gap: 10px;
-           
-          }
-            .messageContent  p {
-              background-color: white;
-              padding: 10px 20px;
-              border-radius: 0px 10px 10px 10px;
-              max-width: max-content;
-            }
-          
-            .messageContent img {
-              width: 50%;
-            }
-          
+.send button {
+  border: none;
+  padding: 10px 15px;
+  color: white;
+  background-color: #8da4f1;
+  cursor: pointer;
+}
 
-          &.owner {
-            flex-direction: row-reverse;
+::-webkit-scrollbar {
+  width: 0px; /* Set the width of the scrollbar track */
+}
 
-            .messageContent {
-              align-items: flex-end;
-              p {
-                /* background-color: #8da4f1; */
-                color: white;
-                border-radius: 10px 0px 10px 10px;
-              }
-            }
-          }
-        }
-      
+/* Thumb */
+::-webkit-scrollbar-thumb {
+  background: #888; /* Set the color of the thumb */
+  border-radius: 5px; /* Set the rounded corners for the thumb */
+}
 
-      .input {
-        bottom: 0;
-        height: 50px;
-       /* margin-top: 63%; */
-        background-color: white;
-        padding: 10px;
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-      }
-      .input input {
-          width: 100%;
-          border: none;
-          outline: none;
-          color: #2f2d52;
-          font-size: 18px;
+/* Track on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #555; /* Set the color of the thumb when hovered */
+}
 
-          &::placeholder {
-            color: lightgray;
-          }
-        }
+/* Button */
+::-webkit-scrollbar-button {
+  display: none; /* Hide the scrollbar buttons */
+}
 
-        .send {
-          display: flex;
-          align-items: center;
-          gap: 10px;
-        }
-        .send img {
-            height: 24px;
-            cursor: pointer;
-          }
+/* Track background */
+::-webkit-scrollbar-track {
+  background: #f1f1f1; /* Set the background color of the scrollbar track */
+}
 
-         .send button {
-            border: none;
-            padding: 10px 15px;
-            color: white;
-            background-color: #8da4f1;
-            cursor: pointer;
-          }
-        
-     
-    
-  
-          ::-webkit-scrollbar {
-            width: 10px; /* Set the width of the scrollbar track */
-          }
-          
-          /* Thumb */
-          ::-webkit-scrollbar-thumb {
-            background: #888; /* Set the color of the thumb */
-            border-radius: 5px; /* Set the rounded corners for the thumb */
-          }
-          
-          /* Track on hover */
-          ::-webkit-scrollbar-thumb:hover {
-            background: #555; /* Set the color of the thumb when hovered */
-          }
-          
-          /* Button */
-          ::-webkit-scrollbar-button {
-            display: none; /* Hide the scrollbar buttons */
-          }
-          
-          /* Track background */
-          ::-webkit-scrollbar-track {
-            background: #f1f1f1; /* Set the background color of the scrollbar track */
-          }
-          
-          /* Track background on hover */
-          ::-webkit-scrollbar-track:hover {
-            background: #ddd; /* Set the background color of the scrollbar track when hovered */
-          }
-          
-          /* Corner */
-          ::-webkit-scrollbar-corner {
-            background: transparent; /* Set the background color of the scrollbar corner */
-          }
-          
-          /* Resizer */
-          ::-webkit-scrollbar-resizer {
-            display: none; /* Hide the scrollbar resizer */
-          }
-          
+/* Track background on hover */
+::-webkit-scrollbar-track:hover {
+  background: #ddd; /* Set the background color of the scrollbar track when hovered */
+}
+
+/* Corner */
+::-webkit-scrollbar-corner {
+  background: transparent; /* Set the background color of the scrollbar corner */
+}
+
+/* Resizer */
+::-webkit-scrollbar-resizer {
+  display: none; /* Hide the scrollbar resizer */
+}
+
+
+.scrollable-content::-webkit-scrollbar-thumb {
+  display: none;
+}
+
+/* Hide the default scrollbar track */
+.scrollable-content::-webkit-scrollbar-track {
+  display: none;
+}
+
+/* Create a custom scrollbar, but make it transparent and invisible */
+.scrollable-content::-webkit-scrollbar {
+  width: 0;
+  height: 0;
+}
+
+/* Create a custom scrollbar corner */
+.scrollable-content::-webkit-scrollbar-corner {
+  background: transparent;
+}

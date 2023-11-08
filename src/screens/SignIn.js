@@ -16,9 +16,27 @@ import {
 import { useNavigate } from "react-router-dom";
 import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
+import { lime, purple } from "@mui/material/colors";
 import { Form, useFormik } from "formik";
+import img from "../assets/home.png";
 import { signInSchema } from "../schemas";
-const defaultTheme = createTheme();
+import Header from "../components/Header";
+const theme = createTheme({
+  palette: {
+    // primary: lime,
+    // secondary: purple,
+  },
+  overrides: {
+    MuiCssBaseline: {
+      "@global": {
+        body: {
+          backgroundImage: `url(${img})`,
+        },
+      },
+    },
+  },
+});
+
 const initialValues = {
   email: "",
   password: "",
@@ -44,31 +62,40 @@ const SignIn = () => {
     });
 
   return (
-    <ThemeProvider theme={defaultTheme}>
-      <Container component="main" maxWidth="sm">
+    <ThemeProvider theme={theme}>
+      <Container
+        maxWidth="false"
+        style={{ backgroundImage: `url(${img})`, height: "100vh" }}
+      >
         <CssBaseline />
+        <Header />
         <Box
           sx={{
-            marginTop: 8,
+            // marginTop: 8,
             display: "flex",
             flexDirection: "column",
             alignItems: "center",
           }}
         >
-          <Paper
-            elevation={3}
-            sx={{
-              marginTop: 4,
+          <div
+            // elevation={2}
+            style={{
+              marginTop: "25px",
               display: "flex",
               flexDirection: "column",
               alignItems: "center",
-              padding: 3,
+              padding: "30px",
+              // backgroundColor: "rgba(255, 255, 255, 0.5)",
+              opacity: 0.9,
+              borderWidth: "2px",
+              borderStyle: "dashed",
+              borderColor: "#fff",
             }}
           >
             <Avatar sx={{ m: 1, bgcolor: "secondary.main" }}>
               <LockOutlinedIcon />
             </Avatar>
-            <Typography component="h1" variant="h5">
+            <Typography component="h1" variant="h5" sx={{ color: "#fff" }}>
               Sign in
             </Typography>
             <form onSubmit={handleSubmit} sx={{ mt: 2 }}>
@@ -105,14 +132,21 @@ const SignIn = () => {
                 control={<Checkbox value="remember" color="primary" />}
                 label="Remember me"
               />
-              <Button
-                type="submit"
-                fullWidth
-                variant="contained"
-                sx={{ mt: 3, mb: 2, padding: "8px", fontSize: "15px" }}
-              >
-                Sign In
-              </Button>
+              <Link href="#">
+                <Button
+                  type="submit"
+                  fullWidth
+                  variant="contained"
+                  sx={{
+                    mt: 3,
+                    mb: 2,
+                    padding: "8px",
+                    fontSize: "15px",
+                  }}
+                >
+                  Sign In
+                </Button>
+              </Link>
               <Grid container>
                 <Grid item xs>
                   <Link href="/forgetpassword" variant="body2">
@@ -127,7 +161,7 @@ const SignIn = () => {
                 </Grid>
               </Grid>
             </form>
-          </Paper>
+          </div>
         </Box>
       </Container>
     </ThemeProvider>

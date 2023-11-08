@@ -2,86 +2,61 @@ import { useEffect, useState } from "react";
 // import ChatContainer from '../components/ChatContainer'
 import { useCookies } from "react-cookie";
 import axios from "axios";
+import img from "../assets/home2.png";
+import { Box, Button, Container } from "@mui/material";
+import Header from "./Header";
+import { useNavigate } from "react-router-dom";
+import { Typography } from "@material-ui/core";
 
 const Dashboard = () => {
+  let navigate = useNavigate();
   const [user, setUser] = useState(null);
   const [genderedUsers, setGenderedUsers] = useState(null);
-  const [lastDirection, setLastDirection] = useState();
-  const [cookies, setCookie, removeCookie] = useCookies(["user"]);
 
-  const userId = cookies.UserId;
-
-  const getUser = async () => {
-    try {
-      const response = await axios.get("http://localhost:8000/user", {
-        params: { userId },
-      });
-      setUser(response.data);
-    } catch (error) {
-      console.log(error);
-    }
-  };
-  const getGenderedUsers = async () => {
-    try {
-      const response = await axios.get("http://localhost:8000/gendered-users", {
-        params: { gender: user?.gender_interest },
-      });
-      setGenderedUsers(response.data);
-    } catch (error) {
-      console.log(error);
-    }
+  const routeChange = () => {
+    let path = `/MobileNo`;
+    navigate(path);
   };
 
-  useEffect(() => {
-    getUser();
-  }, []);
-
-  useEffect(() => {
-    if (user) {
-      getGenderedUsers();
-    }
-  }, [user]);
-
-  const updateMatches = async (matchedUserId) => {
-    try {
-      await axios.put("http://localhost:8000/addmatch", {
-        userId,
-        matchedUserId,
-      });
-      getUser();
-    } catch (err) {
-      console.log(err);
-    }
-  };
-
-  const swiped = (direction, swipedUserId) => {
-    if (direction === "right") {
-      updateMatches(swipedUserId);
-    }
-    setLastDirection(direction);
-  };
-
-  const outOfFrame = (name) => {
-    console.log(name + " left the screen!");
-  };
-
-  const matchedUserIds = user?.matches
-    .map(({ user_id }) => user_id)
-    .concat(userId);
-
-  const filteredGenderedUsers = genderedUsers?.filter(
-    (genderedUser) => !matchedUserIds.includes(genderedUser.user_id)
-  );
-
-  console.log("filteredGenderedUsers ", filteredGenderedUsers);
   return (
-    <>
-      {user && (
-        <div className="dashboard">
-          <h1>Dashboard</h1>
-        </div>
-      )}
-    </>
+    <Container
+      maxWidth="false"
+      disableGutters
+      sx={{
+        p: { xs: 2, sm: 5, md: 2 },
+        background: `url(${img}) center center/cover`,
+        minHeight: "100vh",
+      }}
+    >
+      <Box sx={{ display: "flex", flexDirection: "column" }}>
+        <Header />
+      </Box>
+      {/* <Header /> */}
+      {/* <img src={homeText} alt="" /> */}
+
+      <div
+        style={{
+          backgroundPosition: "center",
+          width: "100%",
+          height: "80vh",
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "center",
+          tabSize: "center",
+        }}
+        loading="lazy"
+      >
+        <h1
+          style={{
+            fontSize: "50px",
+            padding: "5px",
+            color: "#fff",
+          }}
+        >
+          Dashboard comming soon......
+        </h1>
+      </div>
+    </Container>
   );
 };
 export default Dashboard;

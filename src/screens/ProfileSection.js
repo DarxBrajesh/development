@@ -30,6 +30,7 @@ import KeyboardArrowRightIcon from "@mui/icons-material/KeyboardArrowRight";
 import SwipeButton from "../components/SwipeButton";
 import LuvsiCards from "../components/LuvsiCards";
 // import ProfileForm from "./ProfileForm";
+import { Link } from "react-router-dom";
 import Subscription from "./Subscription";
 import GoldSubscription from "../components/subscription/GoldSubscription";
 import PlatinumSubscription from "../components/subscription/PlatinumSubscription";
@@ -429,7 +430,7 @@ const ProfileSection = () => {
               </ListItemButton>
             </ListItem>
             <ListItem disablePadding>
-              <ListItemButton>
+              <ListItemButton component={Link} to="/privacy-policy">
                 <ListItemText primary="Safety & Policy " />
                 <ListItemIcon>
                   <LaunchIcon sx={{ color: "#df2066" }} />
@@ -437,7 +438,7 @@ const ProfileSection = () => {
               </ListItemButton>
             </ListItem>
             <ListItem disablePadding>
-              <ListItemButton>
+              <ListItemButton component={Link} to="/safety-Tips">
                 <ListItemText primary="safety Tips " />
                 <ListItemIcon>
                   <LaunchIcon sx={{ color: "#df2066" }} />
@@ -445,7 +446,7 @@ const ProfileSection = () => {
               </ListItemButton>
             </ListItem>{" "}
             <ListItem disablePadding>
-              <ListItemButton>
+              <ListItemButton component={Link} to="/community">
                 <ListItemText primary="Community Guidelines " />
                 <ListItemIcon>
                   <LaunchIcon sx={{ color: "#df2066" }} />
@@ -463,7 +464,7 @@ const ProfileSection = () => {
               </ListItemButton>
             </ListItem>
             <ListItem disablePadding>
-              <ListItemButton>
+              <ListItemButton component={Link} to="/services-policy">
                 <ListItemText primary="SPrivacy Policy " />
                 <ListItemIcon>
                   <LaunchIcon sx={{ color: "#df2066" }} />
@@ -479,7 +480,7 @@ const ProfileSection = () => {
               </ListItemButton>
             </ListItem>{" "}
             <ListItem disablePadding>
-              <ListItemButton>
+              <ListItemButton component={Link} to="/safety-Tips">
                 <ListItemText primary="CTerms of Service " />
                 <ListItemIcon>
                   <LaunchIcon sx={{ color: "#df2066" }} />

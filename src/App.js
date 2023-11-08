@@ -18,6 +18,9 @@ import MapComponent from "./components/MapComponent";
 import SwipeButton from "./components/SwipeButton";
 import VideoCallStart from "./components/Video Chat/VideoCallStart";
 import AudioCall from "./components/AudioCall";
+import SafetyTips from "./screens/SafetyTips";
+import Safetypolicy from "./screens/Safetypolicy";
+import Community from "./screens/Community";
 function App() {
   return (
     <div className="App grid-container">
@@ -36,9 +39,14 @@ function App() {
           <Route exact path="/profilesection" element={<ProfileSection />} />
           <Route exact path="/dashboard" element={<Dashboard />} />
           <Route exact path="/chat" element={<ChatPreview />} />
+
           <Route exact path="/video-call" element={<VideoCallStart />} />
           <Route exact path="/audio-call" element={<AudioCall />} />
           <Route exact path="/map" element={<MapComponent />} />
+          <Route exact path="/safety-Tips" element={<SafetyTips />} />
+          {/* <Route exact path="/safety-Tips" element={<SafetyTips />} /> */}
+          <Route exact path="/privacy-policy" element={<Safetypolicy />} />
+          <Route exact path="/community" element={<Community />} />
           <Route
             exact
             path="/luvsiCard"

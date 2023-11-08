@@ -11,8 +11,10 @@ import Box from "@mui/material/Box";
 import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
 import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
+import img from "../assets/home.png";
 import Paper from "@mui/material/Paper";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
+import Header from "../components/Header";
 const defaultTheme = createTheme();
 
 const ForgetPassword = () => {
@@ -23,8 +25,13 @@ const ForgetPassword = () => {
   };
   return (
     <ThemeProvider theme={defaultTheme}>
-      <Container component="main" maxWidth="xs">
+      <Container
+        component="main"
+        maxWidth="false"
+        style={{ backgroundImage: `url(${img})`, height: "100vh" }}
+      >
         <CssBaseline />
+        <Header />
         <Box
           sx={{
             marginTop: 4,
@@ -33,14 +40,27 @@ const ForgetPassword = () => {
             alignItems: "center",
           }}
         >
-          <Paper
+          <div
             elevation={3}
-            sx={{
-              marginTop: 4,
+            // sx={{
+            //   marginTop: 4,
+            //   display: "flex",
+            //   flexDirection: "column",
+            //   alignItems: "center",
+            //   padding: 3,
+            // }}
+            style={{
+              marginTop: "25px",
               display: "flex",
               flexDirection: "column",
               alignItems: "center",
-              padding: 3,
+              padding: "40px",
+              // backgroundColor: "rgba(255, 255, 255, 0.5)",
+              opacity: 0.9,
+              borderWidth: "2px",
+              borderStyle: "dashed",
+              borderColor: "#fff",
+              width: "40%",
             }}
           >
             <Avatar sx={{ m: 1, bgcolor: "secondary.main" }}>
@@ -55,12 +75,11 @@ const ForgetPassword = () => {
               onSubmit={handleSubmit}
               sx={{ mt: 3 }}
             >
-              <Grid container spacing={2} >
-               
-                <Grid item xs={12} sx={{width:300}}>
+              <Grid container spacing={2}>
+                <Grid item xs={12} sx={{ width: 300 }}>
                   <TextField
-                     type="email"
-                     label="Email"
+                    type="email"
+                    label="Email"
                     variant="outlined"
                     fullWidth
                     margin="normal"
@@ -75,14 +94,13 @@ const ForgetPassword = () => {
                 variant="contained"
                 color="primary"
                 fullWidth
-                style={{ marginTop: "20px",padding:'10px',fontSize:'15px' }}
+                style={{ marginTop: "20px", padding: "10px", fontSize: "15px" }}
               >
                 Reset Password
               </Button>
             </Box>
-          </Paper>
+          </div>
         </Box>
-      
       </Container>
     </ThemeProvider>
   );

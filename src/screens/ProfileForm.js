@@ -59,7 +59,7 @@ const ProfileForm = () => {
       validateOnBlur: false,
       onSubmit: (values, action) => {
         console.log(values);
-        window.location.href='/profilesection'
+        window.location.href = "/profilesection";
         action.resetForm();
       },
     });

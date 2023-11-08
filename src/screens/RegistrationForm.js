@@ -1,4 +1,4 @@
-import  React from "react";
+import React from "react";
 import {
   Avatar,
   Button,
@@ -13,9 +13,11 @@ import {
 } from "@mui/material";
 
 import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
-import { Form,useFormik } from "formik";
+import { Form, useFormik } from "formik";
+import img from "../assets/home.png";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import { signUpSchema } from "../schemas";
+import Header from "../components/Header";
 const defaultTheme = createTheme();
 const initialValues = {
   firstName: "",
@@ -23,7 +25,6 @@ const initialValues = {
   email: "",
   mobile: "",
   password: "",
-  
 };
 const RegistrationForm = () => {
   const { values, errors, handleBlur, handleChange, handleSubmit, touched } =
@@ -34,42 +35,52 @@ const RegistrationForm = () => {
       validateOnBlur: false,
       onSubmit: (values, action) => {
         console.log(values);
-       
+
         action.resetForm();
       },
     });
 
   return (
     <ThemeProvider theme={defaultTheme}>
-      <Container component="main" maxWidth="sm">
+      <Container
+        maxWidth="false"
+        style={{ backgroundImage: `url(${img})`, height: "100vh" }}
+      >
         <CssBaseline />
+        <Header />
         <Box
           sx={{
-            marginTop: 4,
+            // marginTop: 4,
             display: "flex",
             flexDirection: "column",
             alignItems: "center",
           }}
         >
-          <Paper
-            elevation={3}
-            sx={{
-              marginTop: 4,
+          <div
+            // elevation={3}
+            style={{
+              marginTop: "25px",
               display: "flex",
               flexDirection: "column",
               alignItems: "center",
-              padding: 3,
+              padding: "30px",
+              // backgroundColor: "rgba(255, 255, 255, 0.5)",
+              opacity: 0.9,
+              borderWidth: "2px",
+              borderStyle: "dashed",
+              borderColor: "#fff",
+              width: "60%",
             }}
           >
             <Avatar sx={{ m: 1, bgcolor: "secondary.main" }}>
               <LockOutlinedIcon />
             </Avatar>
-            <Typography component="h1" variant="h5" sx={{m:1}}>
+            <Typography component="h1" variant="h5" sx={{ m: 1 }}>
               Sign up
             </Typography>
-            <form onSubmit={handleSubmit} sx={{ mt:3 }}>
+            <form onSubmit={handleSubmit} sx={{ mt: 3 }}>
               <Grid container spacing={2}>
-                <Grid item xs={12} sm={6}>
+                <Grid item xs={6} sm={6} md={6}>
                   <TextField
                     autoComplete="given-name"
                     name="firstName"
@@ -162,7 +173,7 @@ const RegistrationForm = () => {
                 </Grid>
               </Grid>
             </form>
-          </Paper>
+          </div>
         </Box>
       </Container>
     </ThemeProvider>
