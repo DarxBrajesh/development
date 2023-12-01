@@ -6,6 +6,7 @@ import homeText from "../assets/homeText.png";
 import appBtn from "../assets/appBtn.png";
 import { shadows } from "@material-ui/system";
 import Button from "@mui/material/Button";
+import AddIcon from "@mui/icons-material/Add";
 import Header from "./Header";
 import Location from "../assets/locationIcon.png";
 import Img from "../assets/heart.png";
@@ -50,6 +51,7 @@ const useStyles = makeStyles((theme) => ({
     padding: "10px !important",
     fontSize: "15px !important",
     border: "1px solid white !important",
+    width: "200px !important",
   },
   imageContainer: {
     display: "flex",
@@ -59,15 +61,20 @@ const useStyles = makeStyles((theme) => ({
   imageCard: {
     width: "100%",
     marginBottom: theme.spacing(2),
-    border: "2px solid #fff",
+    // border: "2px solid #fff",
+    background: "transparent !important",
   },
   cardContent: {
     padding: "0px !important",
-    border: "1px solid #fff",
+    // border: "1px solid #fff",
+    border: "none",
+    height: "100%",
   },
   inputField: {
     color: "white !important",
     borderRadius: "10px",
+    width: "25%",
+    textTransform: "none",
     borderColor: "white",
     "& label.Mui-focused": {
       color: "white !important",
@@ -132,11 +139,13 @@ const LandingPage = () => {
     setOpen(false);
   };
   const userInformation = () => {
+    setOpen(false);
     setUploadImg(true);
     setSocail(false);
   };
   const uploadImage = () => {
     setLocation(true);
+
     setUploadImg(false);
   };
   const locationOpen = () => {
@@ -151,7 +160,7 @@ const LandingPage = () => {
     let path = `/dashboard`;
     navigate(path);
   };
-  const [images, setImages] = useState(Array(4).fill(Img));
+  const [images, setImages] = useState(Array(4).fill(""));
 
   const handleImageChange = (index, event) => {
     const newImages = [...images];
@@ -328,7 +337,7 @@ const LandingPage = () => {
         </Box>
       </Modal> */}
 
-      {/* <Modal open={social} onClose={handleClose}>
+      {/* <Modal open={open} onClose={handleClose}>
         <Box
           sx={{
             position: "absolute",
@@ -500,7 +509,7 @@ const LandingPage = () => {
         </Box>
       </Modal> */}
 
-      <Modal open={open} onClose={handleClose}>
+      {/* <Modal open={open} onClose={handleClose}>
         <Box
           sx={{
             position: "absolute",
@@ -518,7 +527,8 @@ const LandingPage = () => {
             background: "transparent",
             borderRadius: "10px",
             overflow: "hidden",
-            height: "500px",
+            height: "530px",
+            // border: "2px solid blue",
           }}
         >
           <div
@@ -582,6 +592,7 @@ const LandingPage = () => {
                           border: "1px solid white",
                           color: "white",
                           borderRadius: "10px",
+                          textTransform: "none !important",
                           padding: "5px 18px 5px 18px",
                           fontFamily: "Poppins",
                         }}
@@ -599,6 +610,7 @@ const LandingPage = () => {
                 flexDirection: "column",
                 justifyContent: "space-between",
                 alignItems: "flex-start",
+                textTransform: "none !important",
                 width: "500px",
                 backgroundColor: "transparent",
               }}
@@ -668,6 +680,7 @@ const LandingPage = () => {
                         border: "1px solid white",
                         color: "white",
                         borderRadius: "10px",
+                        textTransform: "none !important",
                         padding: "5px 18px 5px 18px",
                         fontFamily: "Poppins",
                       }}
@@ -713,6 +726,7 @@ const LandingPage = () => {
                         border: "1px solid white",
                         color: "white",
                         borderRadius: "10px",
+                        textTransform: "none !important",
                         padding: "5px 18px 5px 18px",
                         fontFamily: "Poppins",
                       }}
@@ -755,6 +769,7 @@ const LandingPage = () => {
                         border: "1px solid white",
                         color: "white",
                         borderRadius: "10px",
+                        textTransform: "none !important",
                         padding: "5px 18px 5px 18px",
                         fontFamily: "Poppins",
                       }}
@@ -797,6 +812,7 @@ const LandingPage = () => {
                         border: "1px solid white",
                         color: "white",
                         borderRadius: "10px",
+                        textTransform: "none !important",
                         padding: "5px 18px 5px 18px",
                         fontFamily: "Poppins",
                       }}
@@ -836,6 +852,87 @@ const LandingPage = () => {
                           border: "1px solid white",
                           color: "white",
                           borderRadius: "10px",
+                          textTransform: "none !important",
+                          padding: "5px 18px 5px 18px",
+                          fontFamily: "Poppins",
+                        }}
+                      >
+                        {v}
+                      </ToggleButton>
+                    </Grid>
+                  )
+                )}
+              </Grid>
+            </ToggleButtonGroup>
+            <div
+              style={{
+                display: "flex",
+                flexDirection: "column",
+                justifyContent: "space-between",
+                alignItems: "flex-start",
+                width: "500px",
+                backgroundColor: "transparent",
+              }}
+            >
+              <p style={{ color: "white" }}>What about kids? </p>
+            </div>
+
+            <ToggleButtonGroup
+              value={alignment}
+              exclusive={true}
+              onChange={toggaleChange}
+            >
+              <Grid container={true} spacing={1.25}>
+                {["I love the ones I have", "Love every kid"].map((v) => (
+                  <Grid key={v} item={true}>
+                    <ToggleButton
+                      value={v}
+                      key={v}
+                      sx={{
+                        border: "1px solid white",
+                        color: "white",
+                        borderRadius: "10px",
+                        textTransform: "none !important",
+                        padding: "5px 18px 5px 18px",
+                        fontFamily: "Poppins",
+                      }}
+                    >
+                      {v}
+                    </ToggleButton>
+                  </Grid>
+                ))}
+              </Grid>
+            </ToggleButtonGroup>
+            <div
+              style={{
+                display: "flex",
+                flexDirection: "column",
+                justifyContent: "space-between",
+                alignItems: "flex-start",
+                width: "500px",
+                backgroundColor: "transparent",
+              }}
+            >
+              <p style={{ color: "white" }}>What are your Eating Habits? </p>
+            </div>
+
+            <ToggleButtonGroup
+              value={alignment}
+              exclusive={true}
+              onChange={toggaleChange}
+            >
+              <Grid container={true} spacing={1.25}>
+                {["A little of everything", "Vegetarian", "Junk Food"].map(
+                  (v) => (
+                    <Grid key={v} item={true}>
+                      <ToggleButton
+                        value={v}
+                        key={v}
+                        sx={{
+                          border: "1px solid white",
+                          color: "white",
+                          borderRadius: "10px",
+                          textTransform: "none !important",
                           padding: "5px 18px 5px 18px",
                           fontFamily: "Poppins",
                         }}
@@ -850,20 +947,17 @@ const LandingPage = () => {
           </div>
           <form onSubmit={handleSubmit} sx={{ mt: 1 }}>
             <Button
-              // type="submit"
-              fullWidth
               onClick={userInformation}
               variant="outlined"
               className={classes.btn}
-              sx={{ mt: 3, mb: 2 }}
+              sx={{ mt: 4, mb: 1 }}
             >
               Continue
             </Button>
           </form>
         </Box>
-      </Modal>
-
-      <Modal open={uploadImg} onClose={handleClose}>
+      </Modal> */}
+      <Modal open={open} onClose={handleClose}>
         <Box
           sx={{
             position: "absolute",
@@ -924,35 +1018,116 @@ const LandingPage = () => {
                     display: "block",
                     width: "100%",
                     ml: 1,
+                    // border: "none",
                   }}
                 >
                   <Card className={classes.imageCard}>
                     <CardMedia
                       component="img"
-                      alt={`Image ${index + 1}`}
-                      height="80"
+                      // alt={`Image ${index + 1}`}
+
+                      height="120"
                       image={image}
+                      style={{
+                        border: "0px solid #fff",
+                        width: "100px",
+                        borderRadius: "0px",
+                      }}
                     />
+
                     <CardContent className={classes.cardContent}>
                       <input
                         accept="image/*"
-                        style={{ display: "none" }}
+                        style={{ display: "none", border: "none" }}
                         id={`image-input-${index}`}
                         type="file"
                         onChange={(event) => handleImageChange(index, event)}
                       />
                       <label htmlFor={`image-input-${index}`}>
-                        <Button
-                          component="span"
-                          style={{
-                            width: "100%",
-                            fontSize: "20px",
+                        {image !== "" ? (
+                          ""
+                        ) : (
+                          <Button
+                            component="span"
+                            style={{
+                              position: "absolute",
+                              width: "22%",
+                              fontSize: "56px",
+                              marginTop: "-120px",
+                              padding: "0px",
+                              height: "25%",
+                              color: "white",
+                            }}
+                          >
+                            +
+                          </Button>
+                        )}
+                      </label>
+                    </CardContent>
+                  </Card>
+                </Grid>
+              ))}
+            </Grid>
+            <Grid
+              sx={{
+                display: "flex",
+                width: "100%",
+                padding: "10px",
+              }}
+            >
+              {images.map((image, index) => (
+                <Grid
+                  item
+                  xs={5}
+                  key={index}
+                  sx={{
+                    display: "block",
+                    width: "100%",
+                    ml: 1,
+                    // border: "none",
+                  }}
+                >
+                  <Card className={classes.imageCard}>
+                    <CardMedia
+                      component="img"
+                      // alt={`Image ${index + 1}`}
 
-                            border: "none",
-                          }}
-                        >
-                          +
-                        </Button>
+                      height="120"
+                      image={image}
+                      style={{
+                        border: "0px solid #fff",
+                        width: "100px",
+                        borderRadius: "0px",
+                      }}
+                    />
+
+                    <CardContent className={classes.cardContent}>
+                      <input
+                        accept="image/*"
+                        style={{ display: "none", border: "none" }}
+                        id={`image-input-${index}`}
+                        type="file"
+                        onChange={(event) => handleImageChange(index, event)}
+                      />
+                      <label htmlFor={`image-input-${index}`}>
+                        {image !== "" ? (
+                          ""
+                        ) : (
+                          <Button
+                            component="span"
+                            style={{
+                              position: "absolute",
+                              width: "22%",
+                              fontSize: "56px",
+                              marginTop: "-120px",
+                              padding: "0px",
+                              height: "25%",
+                              color: "white",
+                            }}
+                          >
+                            +
+                          </Button>
+                        )}
                       </label>
                     </CardContent>
                   </Card>
@@ -965,14 +1140,15 @@ const LandingPage = () => {
               variant="outlined"
               onClick={uploadImage}
               className={classes.btn}
-              sx={{ mt: 3, mb: 2 }}
+              sx={{ mt: 3, mb: 2, marginLeft: "30%" }}
             >
               Continue
             </Button>
           </form>
         </Box>
       </Modal>
-      <Modal open={location} onClose={handleClose}>
+
+      {/* <Modal open={open} onClose={handleClose}>
         <Box
           sx={{
             position: "absolute",
@@ -1060,8 +1236,9 @@ const LandingPage = () => {
             </Grid>
           </Grid>
         </Box>
-      </Modal>
-      <Modal open={finish} onClose={handleClose}>
+      </Modal> */}
+
+      {/* <Modal open={open} onClose={handleClose}>
         <Box
           sx={{
             position: "absolute",
@@ -1149,7 +1326,7 @@ const LandingPage = () => {
             </Grid>
           </Grid>
         </Box>
-      </Modal>
+      </Modal> */}
       <div
         style={{
           backgroundPosition: "center",

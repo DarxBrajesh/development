@@ -21,6 +21,8 @@ import AudioCall from "./components/AudioCall";
 import SafetyTips from "./screens/SafetyTips";
 import Safetypolicy from "./screens/Safetypolicy";
 import Community from "./screens/Community";
+import LocationScreen from "./screens/LocationScreen";
+import SecondScreen from "./screens/SecondScreen";
 function App() {
   return (
     <div className="App grid-container">
@@ -39,6 +41,7 @@ function App() {
           <Route exact path="/profilesection" element={<ProfileSection />} />
           <Route exact path="/dashboard" element={<Dashboard />} />
           <Route exact path="/chat" element={<ChatPreview />} />
+          {/* <Route exact path="/chat" element={<SecondScreen />} /> */}
 
           <Route exact path="/video-call" element={<VideoCallStart />} />
           <Route exact path="/audio-call" element={<AudioCall />} />
