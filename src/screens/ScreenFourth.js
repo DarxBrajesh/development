@@ -12,12 +12,13 @@ import {
   Typography,
 } from "@mui/material";
 import appBtn from "../assets/appBtn.png";
-import img from "../assets/home2.png";
+import img from "../assets/home.png";
 import { useFormik } from "formik";
 import { Select, makeStyles } from "@material-ui/core";
 import HomeIcon from "../assets/homeIcon.png";
 import { Link, useNavigate } from "react-router-dom";
 import { profileForm } from "../schemas";
+import Header from "../components/Header";
 const useStyles = makeStyles((theme) => ({
   btn: {
     background: "transparent !important",
@@ -75,7 +76,7 @@ const initialValues = {
   gender: "",
   city: "",
 };
-const SecondScreen = () => {
+const ScreenFourth = () => {
   let navigate = useNavigate();
   const [alignment, setAlignment] = React.useState("web");
   const classes = useStyles();
@@ -111,6 +112,9 @@ const SecondScreen = () => {
         minHeight: "100vh",
       }}
     >
+      <Box sx={{ display: "flex", flexDirection: "column" }}>
+        <Header />
+      </Box>
       <Box
         sx={{
           position: "absolute",
@@ -119,7 +123,7 @@ const SecondScreen = () => {
           border: "1px solid #fff",
           boxShadow: 24,
           p: 4,
-          top: "53%",
+          top: "54%",
           left: "50%",
           transform: "translate(-50%, -50%)",
           display: "flex",
@@ -159,6 +163,7 @@ const SecondScreen = () => {
                 border: "none",
                 color: "white",
                 fontSize: "25px",
+                marginTop: "-2px",
               }}
             >
               X
@@ -225,7 +230,17 @@ const SecondScreen = () => {
               backgroundColor: "transparent",
             }}
           >
-            <FormControl sx={{ m: 1, minWidth: 140 }} size="small">
+            <FormControl
+              sx={{
+                m: 1,
+                minWidth: 140,
+                background: "white",
+                padding: "0px 10px 0px 10px",
+                borderRadius: "10px",
+                textDecoration: "none",
+              }}
+              size="small"
+            >
               <Select
                 labelId="demo-select-small-label"
                 id="demo-select-small"
@@ -546,7 +561,7 @@ const SecondScreen = () => {
             </Grid>
           </ToggleButtonGroup>
         </div>
-        <form onSubmit={handleSubmit} sx={{ mt: 1 }}>
+        <form onSubmit={handleSubmit} style={{ marginTop: "15px" }}>
           <Button
             // onClick={userInformation}
             variant="outlined"
@@ -561,4 +576,4 @@ const SecondScreen = () => {
   );
 };
 
-export default SecondScreen;
+export default ScreenFourth;

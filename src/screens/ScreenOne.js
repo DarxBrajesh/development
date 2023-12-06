@@ -1,12 +1,20 @@
 import React, { useState } from "react";
 import { Box, Button, Container, Grid, Modal, Typography } from "@mui/material";
 import appBtn from "../assets/appBtn.png";
-import img from "../assets/home2.png";
+import img from "../assets/home.png";
 
 import { makeStyles } from "@material-ui/core";
 import HomeIcon from "../assets/homeIcon.png";
 import { Link, useNavigate } from "react-router-dom";
+import Header from "../components/Header";
 const useStyles = makeStyles((theme) => ({
+  btnContainer: {
+    alignItems: "center",
+    justifyContent: "center",
+    // display: "flex",
+    textAlign: "center",
+    // border: "2px solid blue",
+  },
   btn: {
     background: "transparent !important",
     color: "white !important",
@@ -15,8 +23,9 @@ const useStyles = makeStyles((theme) => ({
     padding: "10px !important",
     fontSize: "15px !important",
     border: "1px solid white !important",
-    width: "200px !important",
+    width: "300px !important",
   },
+
   imageContainer: {
     display: "flex",
     justifyContent: "space-between",
@@ -74,6 +83,9 @@ const ScreenOne = () => {
         minHeight: "100vh",
       }}
     >
+      <Box sx={{ display: "flex", flexDirection: "column" }}>
+        <Header />
+      </Box>
       <Box
         sx={{
           position: "absolute",
@@ -82,7 +94,7 @@ const ScreenOne = () => {
           border: "1px solid #fff",
           boxShadow: 24,
           p: 2,
-          top: "50%",
+          top: "54%",
           left: "50%",
           transform: "translate(-50%, -50%)",
           display: "flex",
@@ -126,8 +138,11 @@ const ScreenOne = () => {
             textAlign: "center",
             mt: "10px",
             color: "#fff",
-            fontSize: "13px",
-            padding: "10px",
+            fontSize: "14px",
+            padding: " 8px 45px 8px 45px",
+            fontFamily: " Poppins",
+            fontWeight: 500,
+            lineHeight: "23px",
           }}
         >
           by clicking Log in, You agree to our terms. Learn how we process your
@@ -135,26 +150,17 @@ const ScreenOne = () => {
         </Typography>
 
         <Grid container spacing={2} sx={{ padding: "0 30px 5px 30px" }}>
-          <Grid
-            item
-            xs={12}
-            sx={{
-              alignItems: "center",
-              justifyContent: "center",
-              display: "flex",
-              textAlign: "center",
-            }}
-          >
+          <Grid item xs={12} className={classes.btnContainer}>
             <Button variant="outlined" className={classes.btn} fullWidth>
               Login with facebook
             </Button>
           </Grid>
-          <Grid item xs={12}>
+          <Grid item xs={12} className={classes.btnContainer}>
             <Button fullWidth variant="outlined" className={classes.btn}>
               Login with Mobile no.
             </Button>
           </Grid>
-          <Grid item xs={12}>
+          <Grid item xs={12} className={classes.btnContainer}>
             <Button
               fullWidth
               variant="outlined"
@@ -165,9 +171,35 @@ const ScreenOne = () => {
             </Button>
           </Grid>
         </Grid>
-        <Link style={{ color: "white", padding: "10px" }}>
+        <p
+          style={{
+            color: "white",
+            padding: "0px",
+            fontFamily: " Poppins",
+            fontSize: "15px",
+            fontWeight: 700,
+            lineHeight: "23px",
+            letterSpacing: "0em",
+            // text-align: left;
+
+            margin: 0,
+          }}
+        >
           Trouble Getting log in ?
-        </Link>
+        </p>
+        <p
+          style={{
+            color: "white",
+            padding: "0px",
+            fontFamily: " Poppins",
+            fontSize: "15px",
+            fontWeight: 700,
+            lineHeight: "23px",
+            letterSpacing: "0em",
+          }}
+        >
+          Get the app!
+        </p>
         <button
           style={{
             background: "transparent",
@@ -179,7 +211,7 @@ const ScreenOne = () => {
           <img
             src={appBtn}
             alt=""
-            style={{ height: "50px", marginTop: "-30px" }}
+            style={{ height: "85px", width: "100px", marginTop: "-30px" }}
           />
         </button>
       </Box>

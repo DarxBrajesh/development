@@ -3,10 +3,10 @@ import { createTheme, ThemeProvider } from "@mui/material/styles";
 import { makeStyles } from "@material-ui/core";
 import img from "../assets/home2.png";
 import homeText from "../assets/homeText.png";
-import appBtn from "../assets/appBtn.png";
-import { shadows } from "@material-ui/system";
+// import appBtn from "../assets/appBtn.png";
+// import { shadows } from "@material-ui/system";
 import Button from "@mui/material/Button";
-import AddIcon from "@mui/icons-material/Add";
+// import AddIcon from "@mui/icons-material/Add";
 import Header from "./Header";
 import Location from "../assets/locationIcon.png";
 import Img from "../assets/heart.png";
@@ -132,7 +132,7 @@ const LandingPage = () => {
 
   const handleOpen = () => {
     setOpen(true);
-    setButtonVisibility(false);
+    // setButtonVisibility(false);
   };
   const socialLogin = () => {
     setSocail(true);
@@ -214,128 +214,6 @@ const LandingPage = () => {
         </Box>
       )}
       {/* <Typography>LETS SPREAD L VE TOGETHER</Typography> */}
-      {/* <Modal open={open} onClose={handleClose}>
-        <Box
-          sx={{
-            position: "absolute",
-            width: 400,
-            bgcolor: "background.paper",
-            border: "1px solid #fff",
-            boxShadow: 24,
-            p: 2,
-            top: "50%",
-            left: "50%",
-            transform: "translate(-50%, -50%)",
-            display: "flex",
-            flexDirection: "column",
-            alignItems: "center",
-            background: "transparent",
-            borderRadius: "10px",
-          }}
-        >
-          <div
-            style={{
-              display: "flex",
-              flexDirection: "column",
-              justifyContent: "space-between",
-              alignItems: "flex-end",
-              width: "400px",
-              backgroundColor: "transparent",
-            }}
-          >
-            <button
-              onClick={handleClose}
-              style={{
-                cursor: "pointer",
-                background: "none",
-                border: "none",
-                color: "white",
-                fontSize: "25px",
-              }}
-            >
-              X
-            </button>
-          </div>
-
-          <img src={HomeIcon} alt="" style={{ marginTop: "-20px" }} />
-          <Typography sx={{ fontWeight: 500, color: "#fff", fontSize: "35px" }}>
-            GET STARTED
-          </Typography>
-          <Typography
-            variant="h6"
-            sx={{
-              textAlign: "center",
-              mt: "10px",
-              color: "#fff",
-              fontSize: "13px",
-              padding: "10px",
-            }}
-          >
-            by clicking Log in, You agree to our terms. Learn how we process
-            your data in our Privacy Policy and cookie policy.
-          </Typography>
-
-          <Grid container spacing={2} sx={{ padding: "0 30px 5px 30px" }}>
-            <Grid
-              item
-              xs={12}
-              sx={{
-                alignItems: "center",
-                justifyContent: "center",
-                display: "flex",
-                textAlign: "center",
-              }}
-            >
-              <Button
-                variant="outlined"
-                className={classes.btn}
-                onClick={socialLogin}
-                fullWidth
-              >
-                Login with facebook
-              </Button>
-            </Grid>
-            <Grid item xs={12}>
-              <Button
-                fullWidth
-                variant="outlined"
-                onClick={socialLogin}
-                className={classes.btn}
-              >
-                Login with Mobile no.
-              </Button>
-            </Grid>
-            <Grid item xs={12}>
-              <Button
-                fullWidth
-                variant="outlined"
-                onClick={socialLogin}
-                className={classes.btn}
-                // sx={{ marginTop: "10px", padding: "10px", fontSize: "15px" }}
-              >
-                Login with Mobile no.
-              </Button>
-            </Grid>
-          </Grid>
-          <Link style={{ color: "white", padding: "10px" }}>
-            Trouble Getting log in ?
-          </Link>
-          <button
-            style={{
-              background: "transparent",
-              border: "none",
-              height: "46px",
-              margin: 0,
-            }}
-          >
-            <img
-              src={appBtn}
-              alt=""
-              style={{ height: "50px", marginTop: "-30px" }}
-            />
-          </button>
-        </Box>
-      </Modal> */}
 
       {/* <Modal open={open} onClose={handleClose}>
         <Box
@@ -957,7 +835,7 @@ const LandingPage = () => {
           </form>
         </Box>
       </Modal> */}
-      <Modal open={open} onClose={handleClose}>
+      {/* <Modal open={open} onClose={handleClose}>
         <Box
           sx={{
             position: "absolute",
@@ -1146,7 +1024,7 @@ const LandingPage = () => {
             </Button>
           </form>
         </Box>
-      </Modal>
+      </Modal> */}
 
       {/* <Modal open={open} onClose={handleClose}>
         <Box
