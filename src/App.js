@@ -25,6 +25,7 @@ import LocationScreen from "./screens/LocationScreen";
 import SecondScreen from "./screens/ScreenFourth.js";
 import ScreenOne from "./screens/ScreenOne";
 import ScreenTwo from "./screens/ScreenTwo.js";
+import ScreenFourth from "./screens/ScreenFourth.js";
 function App() {
   return (
     <div className="App grid-container">
@@ -45,6 +46,7 @@ function App() {
           {/* <Route exact path="/chat" element={<ChatPreview />} /> */}
           <Route exact path="/screen-one" element={<ScreenOne />} />
           <Route exact path="/screen-two" element={<ScreenTwo />} />
+          <Route exact path="/screen-fourth" element={<ScreenFourth />} />
           <Route exact path="/video-call" element={<VideoCallStart />} />
           <Route exact path="/audio-call" element={<AudioCall />} />
           <Route exact path="/map" element={<MapComponent />} />
