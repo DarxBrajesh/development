@@ -322,7 +322,7 @@ const ScreenTwo = () => {
             onClick={userInformation}
             variant="outlined"
             className={classes.btn}
-            href="/screen-fourth"
+            href="/screen-three"
           >
             Continue
           </Button>

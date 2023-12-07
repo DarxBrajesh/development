@@ -14,12 +14,13 @@ import {
   Typography,
 } from "@mui/material";
 import appBtn from "../assets/appBtn.png";
-import img from "../assets/home2.png";
+import img from "../assets/home.png";
 import { useFormik } from "formik";
 import { Card, Select, makeStyles } from "@material-ui/core";
 import HomeIcon from "../assets/homeIcon.png";
 import { Link, useNavigate } from "react-router-dom";
 import { profileForm } from "../schemas";
+import Header from "../components/Header";
 const useStyles = makeStyles((theme) => ({
   btn: {
     background: "transparent !important",
@@ -121,6 +122,9 @@ const ImageScreen = () => {
         minHeight: "100vh",
       }}
     >
+      <Box sx={{ display: "flex", flexDirection: "column" }}>
+        <Header />
+      </Box>
       <Box
         sx={{
           position: "absolute",
@@ -189,9 +193,13 @@ const ImageScreen = () => {
                     component="img"
                     // alt={`Image ${index + 1}`}
 
-                    height="80"
+                    height="120"
                     image={image}
-                    style={{ border: "1px solid #fff", width: "100px" }}
+                    style={{
+                      border: "0px solid #fff",
+                      width: "100px",
+                      borderRadius: "0px",
+                    }}
                   />
 
                   <CardContent className={classes.cardContent}>
@@ -212,7 +220,73 @@ const ImageScreen = () => {
                             position: "absolute",
                             width: "22%",
                             fontSize: "56px",
-                            marginTop: "-80px",
+                            marginTop: "-120px",
+                            padding: "0px",
+                            height: "25%",
+                            color: "white",
+                          }}
+                        >
+                          +
+                        </Button>
+                      )}
+                    </label>
+                  </CardContent>
+                </Card>
+              </Grid>
+            ))}
+          </Grid>
+          <Grid
+            sx={{
+              display: "flex",
+              width: "100%",
+              padding: "10px",
+            }}
+          >
+            {images.map((image, index) => (
+              <Grid
+                item
+                xs={5}
+                key={index}
+                sx={{
+                  display: "block",
+                  width: "100%",
+                  ml: 1,
+                  // border: "none",
+                }}
+              >
+                <Card className={classes.imageCard}>
+                  <CardMedia
+                    component="img"
+                    // alt={`Image ${index + 1}`}
+
+                    height="120"
+                    image={image}
+                    style={{
+                      border: "0px solid #fff",
+                      width: "100px",
+                      borderRadius: "0px",
+                    }}
+                  />
+
+                  <CardContent className={classes.cardContent}>
+                    <input
+                      accept="image/*"
+                      style={{ display: "none", border: "none" }}
+                      id={`image-input-${index}`}
+                      type="file"
+                      onChange={(event) => handleImageChange(index, event)}
+                    />
+                    <label htmlFor={`image-input-${index}`}>
+                      {image !== "" ? (
+                        ""
+                      ) : (
+                        <Button
+                          component="span"
+                          style={{
+                            position: "absolute",
+                            width: "22%",
+                            fontSize: "56px",
+                            marginTop: "-120px",
                             padding: "0px",
                             height: "25%",
                             color: "white",
@@ -231,6 +305,7 @@ const ImageScreen = () => {
             type="submit"
             fullWidth
             variant="outlined"
+            href="/screen-fourth"
             onClick={uploadImage}
             className={classes.btn}
             sx={{ mt: 3, mb: 2, marginLeft: "30%" }}

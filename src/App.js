@@ -22,10 +22,11 @@ import SafetyTips from "./screens/SafetyTips";
 import Safetypolicy from "./screens/Safetypolicy";
 import Community from "./screens/Community";
 import LocationScreen from "./screens/LocationScreen";
-import SecondScreen from "./screens/ScreenFourth.js";
+import FinishScreen from "./screens/FinishScreen.js";
 import ScreenOne from "./screens/ScreenOne";
 import ScreenTwo from "./screens/ScreenTwo.js";
 import ScreenFourth from "./screens/ScreenFourth.js";
+import ImageScreen from "./screens/ImageScreen.js";
 function App() {
   return (
     <div className="App grid-container">
@@ -43,10 +44,13 @@ function App() {
           <Route exact path="/profileform" element={<ProfileForm />} />
           <Route exact path="/profilesection" element={<ProfileSection />} />
           <Route exact path="/dashboard" element={<Dashboard />} />
-          {/* <Route exact path="/chat" element={<ChatPreview />} /> */}
+          {/* <Route exact path="/" element={<ChatPreview />} /> */}
           <Route exact path="/screen-one" element={<ScreenOne />} />
           <Route exact path="/screen-two" element={<ScreenTwo />} />
+          <Route exact path="/screen-three" element={<ImageScreen />} />
           <Route exact path="/screen-fourth" element={<ScreenFourth />} />
+          <Route exact path="/location" element={<LocationScreen />} />
+          <Route exact path="/finish" element={<FinishScreen />} />
           <Route exact path="/video-call" element={<VideoCallStart />} />
           <Route exact path="/audio-call" element={<AudioCall />} />
           <Route exact path="/map" element={<MapComponent />} />

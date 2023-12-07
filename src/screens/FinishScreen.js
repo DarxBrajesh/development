@@ -14,7 +14,7 @@ import {
   Typography,
 } from "@mui/material";
 import appBtn from "../assets/appBtn.png";
-import img from "../assets/home2.png";
+import img from "../assets/home.png";
 import { useFormik } from "formik";
 import Img1 from "../assets/Group1.png";
 import RightIcon from "../assets/rightIcon.png";
@@ -24,6 +24,7 @@ import { Card, Select, makeStyles } from "@material-ui/core";
 import HomeIcon from "../assets/homeIcon.png";
 import { Link, useNavigate } from "react-router-dom";
 import { profileForm } from "../schemas";
+import Header from "../components/Header";
 const useStyles = makeStyles((theme) => ({
   btn: {
     background: "transparent !important",
@@ -125,6 +126,9 @@ const LocationScreen = () => {
         minHeight: "100vh",
       }}
     >
+      <Box sx={{ display: "flex", flexDirection: "column" }}>
+        <Header />
+      </Box>
       <Box
         sx={{
           position: "absolute",

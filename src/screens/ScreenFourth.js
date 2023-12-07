@@ -565,6 +565,7 @@ const ScreenFourth = () => {
           <Button
             // onClick={userInformation}
             variant="outlined"
+            href="/location"
             className={classes.btn}
             sx={{ mt: 4, mb: 1 }}
           >
