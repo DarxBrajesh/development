@@ -151,18 +151,29 @@ const ScreenOne = () => {
 
         <Grid container spacing={2} sx={{ padding: "0 30px 5px 30px" }}>
           <Grid item xs={12} className={classes.btnContainer}>
-            <Button variant="outlined" className={classes.btn} fullWidth>
+            <Button
+              variant="outlined"
+              className={classes.btn}
+              fullWidth
+              href="/screen-two"
+            >
               Login with facebook
             </Button>
           </Grid>
           <Grid item xs={12} className={classes.btnContainer}>
-            <Button fullWidth variant="outlined" className={classes.btn}>
+            <Button
+              fullWidth
+              variant="outlined"
+              className={classes.btn}
+              href="/screen-two"
+            >
               Login with Mobile no.
             </Button>
           </Grid>
           <Grid item xs={12} className={classes.btnContainer}>
             <Button
               fullWidth
+              href="/screen-two"
               variant="outlined"
               className={classes.btn}
               // sx={{ marginTop: "10px", padding: "10px", fontSize: "15px" }}
