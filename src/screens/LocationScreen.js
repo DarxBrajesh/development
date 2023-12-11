@@ -31,7 +31,7 @@ const useStyles = makeStyles((theme) => ({
     color: "white !important",
     borderRadius: "10px !important",
     marginTop: "5px !important",
-    padding: "10px !important",
+    // padding: "10px !important",
     fontSize: "15px !important",
     border: "1px solid white !important",
     width: "200px !important",
@@ -189,9 +189,36 @@ const LocationScreen = () => {
               marginTop: "15px",
             }}
           >
-            <img src={Img1} alt="" />
+            <p
+              style={{
+                color: "#fff",
+                fontSize: "12px",
+                marginTop: "10px",
+              }}
+            >
+              Dummy Information For Location Privacy In Location
+            </p>
+            <p
+              style={{
+                color: "#fff",
+                fontSize: "12px",
+                marginTop: "10px",
+              }}
+            >
+              Dummy Information For Location Privacy In Location
+            </p>
+            <p
+              style={{
+                color: "#fff",
+                fontSize: "12px",
+                marginTop: "10px",
+              }}
+            >
+              Dummy Information For Location Privacy In Location
+            </p>
+            {/* <img src={Img1} alt="" />
             <img src={Img2} alt="" />
-            <img src={Img3} alt="" />
+            <img src={Img3} alt="" /> */}
           </Grid>
           <Grid
             item
@@ -209,6 +236,7 @@ const LocationScreen = () => {
               href="/finish"
               // onClick={locationOpen}
               sx={{ width: "80%" }}
+              size="small"
             >
               Continue
             </Button>

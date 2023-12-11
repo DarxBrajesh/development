@@ -25,10 +25,11 @@ const useStyles = makeStyles((theme) => ({
     color: "white !important",
     borderRadius: "10px !important",
     marginTop: "5px !important",
-    padding: "10px !important",
-    fontSize: "15px !important",
+    // padding: "10px !important",
+    fontSize: "18px !important",
     border: "1px solid white !important",
     width: "200px !important",
+    textTransform: "none !important",
   },
   imageContainer: {
     display: "flex",
@@ -568,6 +569,7 @@ const ScreenFourth = () => {
             href="/location"
             className={classes.btn}
             sx={{ mt: 4, mb: 1 }}
+            size="small"
           >
             Continue
           </Button>

@@ -57,6 +57,7 @@ const useStyles = makeStyles((theme) => ({
     borderRadius: "12px",
     width: "25%",
     border: "none",
+    marginTop: "5px",
     background: "white",
     textTransform: "none",
     borderColor: "white",
@@ -64,22 +65,26 @@ const useStyles = makeStyles((theme) => ({
       color: "white !important",
       borderRadius: "12px",
       border: "none",
+      marginTop: "5px",
     },
     "& .MuiOutlinedInput-root": {
       "& fieldset": {
         borderColor: "white",
         borderRadius: "12px",
         border: "none",
+        marginTop: "5px",
       },
       "&.Mui-focused fieldset": {
         borderColor: "white",
         borderRadius: "12px",
         border: "none",
+        marginTop: "5px",
       },
       "& .MuiInputLabel-root.Mui-focused ": {
         color: "white !important",
         borderRadius: "12px",
         border: "none",
+        marginTop: "5px",
       },
     },
   },
@@ -91,7 +96,6 @@ const useStyles = makeStyles((theme) => ({
 }));
 const initialValues = {
   fullname: "",
-  email: "",
   dob: "",
   gender: "",
   city: "",
@@ -159,31 +163,6 @@ const ScreenTwo = () => {
           borderRadius: "10px",
         }}
       >
-        {/* <div
-          style={{
-            display: "flex",
-            flexDirection: "column",
-            justifyContent: "space-between",
-            alignItems: "flex-end",
-            width: "400px",
-            backgroundColor: "transparent",
-          }}
-        >
-          <button
-            onClick={handleClose}
-            style={{
-              cursor: "pointer",
-              background: "none",
-              border: "none",
-              color: "white",
-              fontSize: "25px",
-            }}
-          >
-            X
-          </button>
-        </div> */}
-
-        {/* <img src={HomeIcon} alt="" style={{ marginTop: "-20px" }} /> */}
         <form onSubmit={handleSubmit} sx={{ mt: 1 }}>
           <label style={{ color: "white" }}>What is your first name ?</label>
           <TextField
@@ -203,7 +182,7 @@ const ScreenTwo = () => {
           {errors.fullname && touched.fullname ? (
             <p className="form-error">{errors.fullname}</p>
           ) : null}
-          <label style={{ color: "white" }}>Email Address</label>
+          {/* <label style={{ color: "white" }}>Email Address</label>
           <TextField
             margin="normal"
             fullWidth
@@ -219,14 +198,16 @@ const ScreenTwo = () => {
           />
           {errors.email && touched.email ? (
             <p className="form-error">{errors.email}</p>
-          ) : null}
-          <label style={{ color: "white" }}>Date of Birth</label>
+          ) : null} */}
+          <label style={{ color: "white", marginTop: "15px" }}>
+            Date of Birth
+          </label>
           <TextField
             type="date"
             fullWidth
             name="dob"
             className={classes.inputField}
-            sx={{ mt: 1 }}
+            sx={{ mt: 2 }}
             value={values.dob}
             onChange={handleChange}
             onBlur={handleBlur}
@@ -238,11 +219,11 @@ const ScreenTwo = () => {
           <Typography
             component="h1"
             variant="h6"
-            sx={{ fontSize: "15px", mt: 2, color: "white" }}
+            sx={{ fontSize: "15px", mt: 2, color: "white", marginTop: "15px" }}
           >
             Gender
           </Typography>
-          <RadioGroup
+          {/* <RadioGroup
             row
             aria-labelledby="demo-row-radio-buttons-group-label"
             name="row-radio-buttons-group"
@@ -298,12 +279,74 @@ const ScreenTwo = () => {
           </RadioGroup>
           {errors.gender && touched.gender ? (
             <p className="form-error">{errors.gender}</p>
-          ) : null}
+          ) : null} */}
+          <Grid
+            container
+            spacing={2}
+            sx={{ marginBottom: "15px", marginTop: "5px" }}
+          >
+            <Grid item xs={4}>
+              <Button
+                style={{
+                  background: "transparent",
+                  color: "#fff",
+                  marginRight: "20px",
+                  // padding: "5px",
+                  width: "100px",
+                  borderRadius: "8px",
+                  border: "1px solid white",
+                  // boxShadow: "5px 5px 10px 2px rgba(0,0,0,.8)",
+                }}
+                variant="outlined"
+                size="small"
+              >
+                Male
+              </Button>
+            </Grid>
+            <Grid item xs={4}>
+              <Button
+                style={{
+                  background: "transparent",
+                  color: "#fff",
+                  marginRight: "20px",
+                  // padding: "5px",
+                  width: "100px",
+                  borderRadius: "8px",
+                  border: "1px solid white",
+                  // boxShadow: "5px 5px 10px 2px rgba(0,0,0,.8)",
+                }}
+                variant="outlined"
+                size="small"
+              >
+                Female
+              </Button>
+            </Grid>
+            <Grid item xs={4}>
+              <Button
+                style={{
+                  background: "transparent",
+                  color: "#fff",
+                  marginRight: "20px",
+                  // padding: "5px",
+                  width: "100px",
+                  borderRadius: "8px",
+                  border: "1px solid white",
+
+                  // boxShadow: "5px 5px 10px 2px rgba(0,0,0,.8)",
+                }}
+                variant="outlined"
+                size="small"
+              >
+                Other
+              </Button>
+            </Grid>
+          </Grid>
+          <label style={{ color: "white" }}>Your city you live in</label>
           <TextField
             margin="normal"
             fullWidth
             id="city"
-            label="Your city you live in"
+            placeholder="Your city"
             name="city"
             className={classes.inputField}
             onChange={handleChange}

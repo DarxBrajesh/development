@@ -141,18 +141,20 @@ const ImageScreen = () => {
           alignItems: "center",
           background: "transparent",
           borderRadius: "10px",
+          // borderStyle: "dashed",
         }}
       >
         <div
           style={{
             display: "flex",
-            flexDirection: "column",
+            // flexDirection: "column",
             justifyContent: "space-between",
-            alignItems: "flex-end",
+            // alignItems: "flex-end",
             width: "400px",
             backgroundColor: "transparent",
           }}
         >
+          <p style={{ color: "white" }}>Add your best photo</p>
           <button
             onClick={handleClose}
             style={{
@@ -167,7 +169,7 @@ const ImageScreen = () => {
           </button>
         </div>
 
-        <img src={HomeIcon} alt="" style={{ marginTop: "-20px" }} />
+        {/* <img src={HomeIcon} alt="" style={{ marginTop: "-20px" }} /> */}
         <form onSubmit={handleSubmit} sx={{ mt: 1 }}>
           <Grid
             sx={{
@@ -185,20 +187,18 @@ const ImageScreen = () => {
                   display: "block",
                   width: "100%",
                   ml: 1,
-                  // border: "none",
                 }}
               >
                 <Card className={classes.imageCard}>
                   <CardMedia
                     component="img"
-                    // alt={`Image ${index + 1}`}
-
                     height="120"
                     image={image}
                     style={{
-                      border: "0px solid #fff",
+                      border: "1px solid #fff",
                       width: "100px",
                       borderRadius: "0px",
+                      borderStyle: "dashed",
                     }}
                   />
 
@@ -222,7 +222,9 @@ const ImageScreen = () => {
                             fontSize: "56px",
                             marginTop: "-120px",
                             padding: "0px",
-                            height: "25%",
+                            border: "1px solid #fff",
+                            height: "23%",
+                            borderStyle: "dashed !important",
                             color: "white",
                           }}
                         >
@@ -242,29 +244,27 @@ const ImageScreen = () => {
               padding: "10px",
             }}
           >
-            {images.map((image, index) => (
+            {images.map((images, indexs) => (
               <Grid
                 item
                 xs={5}
-                key={index}
+                key={indexs}
                 sx={{
                   display: "block",
                   width: "100%",
                   ml: 1,
-                  // border: "none",
                 }}
               >
                 <Card className={classes.imageCard}>
                   <CardMedia
                     component="img"
-                    // alt={`Image ${index + 1}`}
-
                     height="120"
-                    image={image}
+                    image={images}
                     style={{
-                      border: "0px solid #fff",
+                      border: "1px solid #fff",
                       width: "100px",
                       borderRadius: "0px",
+                      borderStyle: "dashed",
                     }}
                   />
 
@@ -272,12 +272,12 @@ const ImageScreen = () => {
                     <input
                       accept="image/*"
                       style={{ display: "none", border: "none" }}
-                      id={`image-input-${index}`}
+                      id={`image-input-${indexs}`}
                       type="file"
-                      onChange={(event) => handleImageChange(index, event)}
+                      onChange={(event) => handleImageChange(indexs, event)}
                     />
-                    <label htmlFor={`image-input-${index}`}>
-                      {image !== "" ? (
+                    <label htmlFor={`image-input-${indexs}`}>
+                      {images !== "" ? (
                         ""
                       ) : (
                         <Button
@@ -289,6 +289,7 @@ const ImageScreen = () => {
                             marginTop: "-120px",
                             padding: "0px",
                             height: "25%",
+                            borderStyle: "dashed",
                             color: "white",
                           }}
                         >
@@ -301,6 +302,15 @@ const ImageScreen = () => {
               </Grid>
             ))}
           </Grid>
+          <div
+            style={{
+              paddingLeft: "20px",
+              paddingTop: "20px",
+              marginTop: "-55px",
+            }}
+          >
+            <p style={{ color: "white" }}>Add your best photo</p>
+          </div>
           <Button
             type="submit"
             fullWidth

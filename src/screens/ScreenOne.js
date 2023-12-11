@@ -2,6 +2,9 @@ import React, { useState } from "react";
 import { Box, Button, Container, Grid, Modal, Typography } from "@mui/material";
 import appBtn from "../assets/appBtn.png";
 import img from "../assets/home.png";
+import appleIcon from "../assets/appleIcon.png";
+import googleIcon from "../assets/googleIcon.png";
+import facebookIcon from "../assets/facebookIcon.png";
 
 import { makeStyles } from "@material-ui/core";
 import HomeIcon from "../assets/homeIcon.png";
@@ -64,13 +67,24 @@ const useStyles = makeStyles((theme) => ({
       },
     },
   },
+  disabledTab: {
+    pointerEvents: "none !important",
+    filter: "blur(4px) !important",
+    opacity: 0.2,
+    background: "white",
+    width: "90%",
+    marginTop: "-55px",
+    height: "45px",
+    pointer: "none",
+    marginLeft: "10%",
+  },
 }));
-const ScreenOne = () => {
+const ScreenOne = ({ isDisabled }) => {
   let navigate = useNavigate();
   const classes = useStyles();
-  const [open, setOpen] = useState(false);
+  const isTabDisabled = true;
+  const [login, setLogin] = useState(false);
   const handleClose = () => {
-    setOpen(false);
     // setButtonVisibility(true);
   };
   return (
@@ -83,9 +97,26 @@ const ScreenOne = () => {
         minHeight: "100vh",
       }}
     >
-      <Box sx={{ display: "flex", flexDirection: "column" }}>
-        <Header />
+      <Box
+        sx={{ display: "flex", flexDirection: "column" }}
+        // className={classes.disabledTab}
+      >
+        <Header
+          style={
+            true
+              ? {
+                  filter: "blur(4px) !important",
+                  pointerEvents: "none !important",
+                  opacity: 0.2,
+                  background: "blue !important",
+                  width: "100%",
+                }
+              : ""
+          }
+          disabled="true"
+        />
       </Box>
+      {/* <div className={classes.disabledTab}>jhhgh</div> */}
       <Box
         sx={{
           position: "absolute",
@@ -129,7 +160,7 @@ const ScreenOne = () => {
         </div>
 
         <img src={HomeIcon} alt="" style={{ marginTop: "-20px" }} />
-        <Typography sx={{ fontWeight: 500, color: "#fff", fontSize: "35px" }}>
+        <Typography sx={{ fontWeight: 600, color: "#fff", fontSize: "35px" }}>
           GET STARTED
         </Typography>
         <Typography
@@ -138,14 +169,14 @@ const ScreenOne = () => {
             textAlign: "center",
             mt: "10px",
             color: "#fff",
-            fontSize: "14px",
+            fontSize: "15px",
             padding: " 8px 45px 8px 45px",
             fontFamily: " Poppins",
             fontWeight: 500,
             lineHeight: "23px",
           }}
         >
-          by clicking Log in, You agree to our terms. Learn how we process your
+          By clicking Log in, You agree to our terms. Learn how we process your
           data in our Privacy Policy and cookie policy.
         </Typography>
 
@@ -157,7 +188,8 @@ const ScreenOne = () => {
               fullWidth
               href="/screen-two"
             >
-              Login with facebook
+              <img src={appleIcon} alt="" style={{ marginRight: "12px" }} />{" "}
+              Connect with Apple
             </Button>
           </Grid>
           <Grid item xs={12} className={classes.btnContainer}>
@@ -167,7 +199,8 @@ const ScreenOne = () => {
               className={classes.btn}
               href="/screen-two"
             >
-              Login with Mobile no.
+              <img src={googleIcon} alt="" style={{ marginRight: "12px" }} />{" "}
+              Connect with Google
             </Button>
           </Grid>
           <Grid item xs={12} className={classes.btnContainer}>
@@ -178,14 +211,15 @@ const ScreenOne = () => {
               className={classes.btn}
               // sx={{ marginTop: "10px", padding: "10px", fontSize: "15px" }}
             >
-              Login with Mobile no.
+              <img src={facebookIcon} alt="" style={{ marginRight: "12px" }} />
+              Connect with Facebook
             </Button>
           </Grid>
         </Grid>
         <p
           style={{
             color: "white",
-            padding: "0px",
+            padding: "10px 0 0 0",
             fontFamily: " Poppins",
             fontSize: "15px",
             fontWeight: 700,

@@ -7,15 +7,17 @@ import Typography from "@mui/material/Typography";
 import Menu from "@mui/material/Menu";
 import MenuIcon from "@mui/icons-material/Menu";
 import Container from "@mui/material/Container";
-import Avatar from "@mui/material/Avatar";
+
 import Button from "@mui/material/Button";
-import Tooltip from "@mui/material/Tooltip";
+
 import MenuItem from "@mui/material/MenuItem";
-import AdbIcon from "@mui/icons-material/Adb";
+
 import HomeIcon from "../assets/homeIcon.png";
 import { Link, boxShadow } from "@mui/material";
-const pages = ["PRODUCT", "LEARN", "SUPPORT", "DOWNLOAD", "Blog"];
-const settings = ["Profile", "Account", "Dashboard", "Logout"];
+// import { useLocation } from "react-router-dom";
+
+const pages = ["PRODUCT", "LEARN", "SUPPORT", "DOWNLOAD"];
+// const settings = ["Profile", "Account", "Dashboard", "Logout"];
 
 function Header() {
   const [anchorElNav, setAnchorElNav] = React.useState(null);
@@ -38,20 +40,10 @@ function Header() {
 
   return (
     <AppBar position="static" elevation={0} color="transparent">
-      <Container
-        maxWidth="xl"
-        sx={
-          {
-            // px: 10,
-            // pt: 3,
-            // display: "flex",
-            // gap: 2,
-          }
-        }
-        disableGutters
-      >
+      <Container maxWidth="xl" disableGutters>
         <Toolbar disableGutters>
           <img src={HomeIcon} alt="" />
+
           <Box sx={{ flexGrow: 1, display: { xs: "flex", md: "none" } }}>
             <IconButton
               size="large"
@@ -88,25 +80,7 @@ function Header() {
               ))}
             </Menu>
           </Box>
-          {/* <AdbIcon sx={{ display: { xs: "flex", md: "none" }, mr: 1 }} /> */}
-          {/* <Typography
-            variant="h5"
-            noWrap
-            component="a"
-            href="#app-bar-with-responsive-menu"
-            sx={{
-              ml: 2,
-              display: { xs: "flex", md: "none" },
-              flexGrow: 1,
-              fontFamily: "monospace",
-              fontWeight: 700,
-              letterSpacing: ".3rem",
-              color: "inherit",
-              textDecoration: "none",
-            }}
-          >
-            LOGO
-          </Typography> */}
+
           <Box sx={{ flexGrow: 1, display: { xs: "none", md: "flex" } }}>
             {pages.map((page) => (
               <Button
@@ -123,6 +97,7 @@ function Header() {
               </Button>
             ))}
           </Box>
+
           <Link href="/sign-in">
             <Button
               style={{
@@ -131,41 +106,13 @@ function Header() {
                 marginRight: "20px",
                 padding: "5px",
                 width: "100px",
-                boxShadow: "5px 5px 10px 2px rgba(0,0,0,.8)",
+                borderRadius: "8px",
+                // boxShadow: "5px 5px 10px 2px rgba(0,0,0,.8)",
               }}
             >
               Login
             </Button>
           </Link>
-          <Box sx={{ flexGrow: 0 }}>
-            <Tooltip title="Open settings">
-              <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-                <Avatar alt="Remy Sharp" src="/static/images/avatar/2.jpg" />
-              </IconButton>
-            </Tooltip>
-            <Menu
-              sx={{ mt: "45px" }}
-              id="menu-appbar"
-              anchorEl={anchorElUser}
-              anchorOrigin={{
-                vertical: "top",
-                horizontal: "right",
-              }}
-              keepMounted
-              transformOrigin={{
-                vertical: "top",
-                horizontal: "right",
-              }}
-              open={Boolean(anchorElUser)}
-              onClose={handleCloseUserMenu}
-            >
-              {settings.map((setting) => (
-                <MenuItem key={setting} onClick={handleCloseUserMenu}>
-                  <Typography textAlign="center">{setting}</Typography>
-                </MenuItem>
-              ))}
-            </Menu>
-          </Box>
         </Toolbar>
       </Container>
     </AppBar>

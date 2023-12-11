@@ -27,11 +27,11 @@ const Community = () => {
         <Box sx={{ bgcolor: "trasparent", mt: 2 }}>
           <Typography
             variant="h4"
-            sx={{ fontFamily: "sans-serif", fontWeight: "600" }}
+            sx={{ fontFamily: "sans-serif", fontWeight: "600", color: "white" }}
           >
             Community Guidelines
           </Typography>
-          <p style={{ paddingLeft: "10px" }}>
+          <p style={{ paddingLeft: "10px", color: "white" }}>
             Welcome to Luvsi!
             <br />
             Luvsi is where meaningful connections can happen. It Starts With a
@@ -46,20 +46,22 @@ const Community = () => {
           </p>
           <Typography
             variant="h5"
-            sx={{ fontFamily: "sans-serif", fontWeight: "600" }}
+            sx={{ fontFamily: "sans-serif", fontWeight: "600", color: "white" }}
           >
             Luvsi's Rules:
           </Typography>
-          <p>
-            <span style={{ fontWeight: "800" }}>Consider boundaries.</span>{" "}
+          <p style={{ color: "white" }}>
+            <span style={{ fontWeight: "800", color: "white" }}>
+              Consider boundaries.
+            </span>{" "}
             Comfort levels vary person to person. That’s why we don’t allow
             nudity, sexual content, sexual desires, or looking for sex on your
             public profile. If you are in a private conversation, these are okay
             if everyone is okay with it. Consent matters.
           </p>
           <br />
-          <p>
-            <span style={{ fontWeight: "800" }}>
+          <p style={{ color: "white" }}>
+            <span style={{ fontWeight: "800", color: "white" }}>
               Share cautiously and thoughtfully.
             </span>
             Don’t publicly broadcast your personal information or ways for
@@ -70,38 +72,44 @@ const Community = () => {
             money to other people. Or maybe don’t at all.
           </p>
           <br />
-          <p>
+          <p style={{ color: "white" }}>
             Steer clear of violent content. We promote positivity and won’t
             tolerate any sort of violent content that contains gore, death,
             images or descriptions of violent acts (against humans or animals),
             use of weapons, and anything advocating or glorifying self-harm.
           </p>
 
-          <p>
+          <p style={{ color: "white" }}>
             Make personal connections, not biz ones. Don’t advertise, promote,
             share your social handles to gain followers, sell stuff, fundraise,
             or campaign. This also means Luvsi isn’t the place for any sort of
             sex work, escort services, or compensated relationships. So,
             no–don’t use Luvsi to find your sugarmamma.
           </p>
-          <Typography variant="h6" sx={{ fontFamily: "sans-serif" }}>
+          <Typography
+            variant="h6"
+            sx={{ fontFamily: "sans-serif", color: "white" }}
+          >
             * Be Wary of Long Distance and Overseas Relationships
           </Typography>
-          <p>
+          <p style={{ color: "white" }}>
             ust be you. People want to meet the real you. Not your fake persona.
             Don’t create a fake account or pretend to be someone you’re not,
             even if it’s just for fun.
           </p>
-          <Typography variant="h6" sx={{ fontFamily: "sans-serif" }}>
+          <Typography
+            variant="h6"
+            sx={{ fontFamily: "sans-serif", color: "white" }}
+          >
             * Report All Suspicious and Offensive Behavior
           </Typography>
-          <p>
+          <p style={{ color: "white" }}>
             Communicate Respectfully. Talking to new people can be tricky,
             especially when you’re interacting with humans from all walks of
             life. Respect goes a long way.
           </p>
 
-          <p>
+          <p style={{ color: "white" }}>
             Be sure to pick a strong password, and always be careful when
             logging into your account from a public or shared computer. Luvsi
             will never send you an email asking for your username and password
@@ -110,48 +118,63 @@ const Community = () => {
           </p>
           <Typography
             variant="h5"
-            sx={{ fontFamily: "sans-serif", fontWeight: "600" }}
+            sx={{ fontFamily: "sans-serif", fontWeight: "600", color: "white" }}
           >
             Meeting in Person
           </Typography>
-          <Typography variant="h6" sx={{ fontFamily: "sans-serif" }}>
+          <Typography
+            variant="h6"
+            sx={{ fontFamily: "sans-serif", color: "white" }}
+          >
             * Don’t Be In A Rush
           </Typography>
-          <p>
+          <p style={{ color: "white" }}>
             Take your time and get to know the other person before agreeing to
             meet or chat off Luvsi. Don’t be afraid to ask questions to screen
             for any red flags or personal dealbreakers. A phone or video call
             can be a useful screening tool before meeting.
           </p>
-          <Typography variant="h6" sx={{ fontFamily: "sans-serif" }}>
+          <Typography
+            variant="h6"
+            sx={{ fontFamily: "sans-serif", color: "white" }}
+          >
             * Meet in Public and Stay in Public
           </Typography>
-          <p>
+          <p style={{ color: "white" }}>
             Meet for the first few times in a populated, public place — never at
             your home, your date’s home, or any other private location. If your
             date pressures you to go to a private location, end the date.
           </p>
-          <Typography variant="h6" sx={{ fontFamily: "sans-serif" }}>
+          <Typography
+            variant="h6"
+            sx={{ fontFamily: "sans-serif", color: "white" }}
+          >
             * Tell Friends and Family About Your Plans
           </Typography>
-          <p>
+          <p style={{ color: "white" }}>
             Tell a friend or family member of your plans, including when and
             where you’re going. Have your cell phone charged and with you at all
             times.
           </p>
-          <Typography variant="h6" sx={{ fontFamily: "sans-serif" }}>
+          <Typography
+            variant="h6"
+            sx={{ fontFamily: "sans-serif", color: "white" }}
+          >
             * Be in Control of Your Transportation
           </Typography>
-          <p>
+          <p style={{ color: "white" }}>
             We want you to be in control of how you get to and from your date so
             that you can leave whenever you want. If you’re driving yourself,
             it’s a good idea to have a backup plan such as a ride-share app or a
             friend to pick you up.
           </p>
-          <Typography variant="h6" sx={{ fontFamily: "sans-serif" }}>
+          <Typography
+            variant="h6"
+            sx={{ fontFamily: "sans-serif", color: "white" }}
+          >
             * Know Your Limits
           </Typography>
-          <p>
+          <p style={{ color: "white" }}>
             Be aware of the effects of drugs or alcohol on you specifically —
             they can impair your judgment and your alertness. If your date tries
             to pressure you to use drugs or drink more than you’re comfortable

@@ -31,7 +31,7 @@ const useStyles = makeStyles((theme) => ({
     color: "white !important",
     borderRadius: "10px !important",
     marginTop: "5px !important",
-    padding: "10px !important",
+    // padding: "10px !important",
     fontSize: "15px !important",
     border: "1px solid white !important",
     width: "200px !important",
@@ -185,7 +185,7 @@ const LocationScreen = () => {
             xs={12}
             sx={{
               display: "block",
-              marginLeft: "35px",
+              marginLeft: "55px",
               marginTop: "15px",
             }}
           >
@@ -208,6 +208,7 @@ const LocationScreen = () => {
               className={classes.btn}
               // onClick={routeChange}
               sx={{ width: "80%" }}
+              size="small"
             >
               Finish
             </Button>

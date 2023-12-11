@@ -232,18 +232,24 @@ const LandingPage = () => {
             variant="outlined"
             sx={{
               fontSize: "20px",
-              padding: "5px",
+              padding: "10px",
               color: "#fff",
               border: "1px solid #fff",
               borderRadius: "8px",
-              boxShadow: "1px 1px 2px 1px rgba(255,255,255,.8)",
+              fontFamily: "Poppins",
+
+              fontWeight: "700",
+              lineHeight: "20px",
+              letterSpacing: "0em",
+
+              // boxShadow: "1px 1px 2px 1px rgba(255,255,255,.8)",
               "&:hover": {
                 border: "1px solid white",
               },
             }}
             onClick={handleOpen}
           >
-            Create Account
+            CREATE ACCOUNT
           </Button>
         )}
       </div>
