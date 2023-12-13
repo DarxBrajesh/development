@@ -116,7 +116,7 @@ const ScreenOne = ({ isDisabled }) => {
           disabled="true"
         />
       </Box>
-      {/* <div className={classes.disabledTab}>jhhgh</div> */}
+
       <Box
         sx={{
           position: "absolute",
