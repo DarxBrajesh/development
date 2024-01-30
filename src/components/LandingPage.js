@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import { makeStyles } from "@material-ui/core";
 import img from "../assets/home2.png";
@@ -8,87 +8,117 @@ import homeText from "../assets/homeText.png";
 import Button from "@mui/material/Button";
 // import AddIcon from "@mui/icons-material/Add";
 import Header from "./Header";
-import Location from "../assets/locationIcon.png";
-import Img from "../assets/heart.png";
-import Img1 from "../assets/Group1.png";
-import Img2 from "../assets/Group2.png";
-import Img3 from "../assets/Group3.png";
-import RightIcon from "../assets/rightIcon.png";
-import { Link, useNavigate } from "react-router-dom";
-import HomeIcon from "../assets/homeIcon.png";
 
-import {
-  Avatar,
-  Box,
-  Card,
-  CardContent,
-  CardMedia,
-  Checkbox,
-  Container,
-  FormControl,
-  FormControlLabel,
-  Grid,
-  InputLabel,
-  MenuItem,
-  Modal,
-  Radio,
-  RadioGroup,
-  Select,
-  TextField,
-  ToggleButton,
-  ToggleButtonGroup,
-  Typography,
-} from "@mui/material";
+import { useNavigate } from "react-router-dom";
+import HomeIcon from "../assets/homeIcon.png";
+import { Box, Container, Typography } from "@mui/material";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useFormik } from "formik";
 import { profileForm } from "../schemas";
 const useStyles = makeStyles((theme) => ({
   btn: {
-    background: "transparent !important",
-    color: "white !important",
-    borderRadius: "10px !important",
-    marginTop: "5px !important",
+    fontSize: "20px !important",
     padding: "10px !important",
-    fontSize: "15px !important",
-    border: "1px solid white !important",
-    width: "200px !important",
-  },
-  imageContainer: {
-    display: "flex",
-    justifyContent: "space-between",
-    marginTop: theme.spacing(2),
-  },
-  imageCard: {
-    width: "100%",
-    marginBottom: theme.spacing(2),
-    // border: "2px solid #fff",
-    background: "transparent !important",
-  },
-  cardContent: {
-    padding: "0px !important",
-    // border: "1px solid #fff",
-    border: "none",
-    height: "100%",
-  },
-  inputField: {
-    color: "white !important",
-    borderRadius: "10px",
-    width: "25%",
-    textTransform: "none",
-    borderColor: "white",
-    "& label.Mui-focused": {
-      color: "white !important",
+    color: "#fff !important",
+    border: "1px solid #fff !important",
+    borderRadius: "8px !important",
+    fontFamily: "Poppins !important",
+    fontWeight: "700 !important",
+    lineHeight: "20px !important",
+    letterSpacing: "0em !important",
+    // boxShadow: "1px 1px 2px 1px rgba(255,255,255,.8)",
+    "&:hover": {
+      border: "1px solid white !important",
     },
-    "& .MuiOutlinedInput-root": {
-      "& fieldset": {
-        borderColor: "white",
-      },
-      "&.Mui-focused fieldset": {
-        borderColor: "white",
-      },
-      "& .MuiInputLabel-root.Mui-focused ": {
-        color: "white !important",
-      },
+    // [theme.breakpoints.between("xs", "sm")]: {
+    //   fontSize: "12px !important",
+    //   padding: "5px !important",
+    //   lineHeight: "15px !important",
+    // },
+    [theme.breakpoints.down("xs")]: {
+      fontSize: "14px !important",
+      padding: "8px !important",
+    },
+    [theme.breakpoints.between("sm", "md")]: {
+      fontSize: "16px !important",
+      padding: "9px !important",
+    },
+    [theme.breakpoints.between("md", "lg")]: {
+      fontSize: "18px !important",
+      padding: "10px !important",
+    },
+    [theme.breakpoints.up("lg")]: {
+      fontSize: "20px !important",
+      padding: "12px !important",
+    },
+  },
+  btnContainer: {
+    backgroundPosition: "center",
+    width: "100%",
+    height: "80vh",
+    display: "flex",
+    justifyContent: "center",
+    alignItems: "center",
+    tabSize: "center",
+    // [theme.breakpoints.up("sm")]: {
+    //   // Tablet styles
+    //   fontSize: "18px !important",
+    //   padding: "12px !important",
+    // },
+    // [theme.breakpoints.up("md")]: {
+    //   // Laptop styles
+    //   fontSize: "20px !important",
+    //   padding: "14px !important",
+    // },
+    // [theme.breakpoints.up("lg")]: {
+    //   // Desktop styles
+    //   fontSize: "24px !important",
+    //   padding: "16px !important",
+    // },
+  },
+  imgContainer: {
+    position: "absolute !important",
+    display: "flex !important",
+    justifyContent: "center !important",
+    alignItems: "center !important",
+    marginTop: "6% !important",
+    textAlign: "center !important",
+    width: "97.5% !important",
+    // border: "2px solid white",
+    // marginLeft: "29% !important",
+    [theme.breakpoints.down("xs")]: {},
+    [theme.breakpoints.between("sm", "md")]: {},
+    [theme.breakpoints.between("md", "lg")]: {},
+    [theme.breakpoints.up("lg")]: {},
+  },
+  lavshiText: {
+    fontSize: "40px !important",
+    padding: "10px !important",
+    color: "#fff !important",
+    fontFamily: "Poppins !important",
+    fontWeight: "700 !important",
+    lineHeight: "62px !important",
+  },
+  imgSize: {
+    [theme.breakpoints.down("xs")]: {
+      width: "69% !important",
+      marginTop: "42%",
+      marginLeft: "-20px",
+    },
+    [theme.breakpoints.between("sm", "md")]: {
+      width: "70% !important",
+      // marginTop: "10%",
+      // marginLeft: "-20px",
+    },
+    [theme.breakpoints.down("md", "lg")]: {
+      width: "69% !important",
+      marginTop: "6%",
+      marginLeft: "-60px",
+    },
+    [theme.breakpoints.up("lg")]: {
+      // width: "69% !important",
+      // marginTop: "6%",
+      // marginLeft: "-60px",
     },
   },
 }));
@@ -102,21 +132,9 @@ const initialValues = {
 const LandingPage = () => {
   let navigate = useNavigate();
   const classes = useStyles();
-  const [open, setOpen] = useState(false);
-  const [social, setSocail] = useState(false);
-  const [finish, setFinish] = useState(false);
-  const [uploadImg, setUploadImg] = useState(false);
-  const [location, setLocation] = useState(false);
+  const [data, setData] = useState([""]);
   const [isButtonVisible, setButtonVisibility] = useState(true);
-  const [alignment, setAlignment] = React.useState("web");
-  const [age, setAge] = React.useState("");
 
-  const ageHandleChange = (event) => {
-    setAge(event.target.value);
-  };
-  const toggaleChange = (event, newAlignment) => {
-    setAlignment(newAlignment);
-  };
   const { values, errors, handleBlur, handleChange, handleSubmit, touched } =
     useFormik({
       initialValues: initialValues,
@@ -131,31 +149,31 @@ const LandingPage = () => {
     });
 
   const handleOpen = () => {
-    setOpen(true);
     // setButtonVisibility(false);
   };
-  const socialLogin = () => {
-    setSocail(true);
-    setOpen(false);
-  };
-  const userInformation = () => {
-    setOpen(false);
-    setUploadImg(true);
-    setSocail(false);
-  };
-  const uploadImage = () => {
-    setLocation(true);
+  const FetchData = () => {
+    var requestOptions = {
+      method: "GET",
+      redirect: "follow",
+    };
 
-    setUploadImg(false);
+    fetch(
+      "https://luvsi.darxtechnologies.com/public/api/splash/web",
+      requestOptions
+    )
+      .then((response) => response.json())
+      .then((responseJson) => {
+        if (responseJson !== "") {
+          setData(responseJson.result);
+          console.log(data[0].answers, "data...");
+        } else {
+          alert("error in response");
+        }
+      });
   };
-  const locationOpen = () => {
-    setFinish(true);
-    setLocation(false);
-  };
-  const handleClose = () => {
-    setOpen(false);
-    setButtonVisibility(true);
-  };
+  useEffect(() => {
+    FetchData();
+  }, []);
   const routeChange = () => {
     let path = `/dashboard`;
     navigate(path);
@@ -198,60 +216,26 @@ const LandingPage = () => {
       </Box>
       {/* <Header /> */}
       {isButtonVisible && (
-        <Box
-          sx={{
-            position: "absolute",
-            display: "flex",
-            justifyContent: "center",
-            alignItems: "center",
-            marginTop: "6%",
-            textAlign: "center",
-            // border: "2px solid white",
-            marginLeft: "25.5%",
-          }}
-        >
-          <img src={homeText} alt="" />
+        <Box className={classes.imgContainer}>
+          <img src={homeText} alt="" className={classes.imgSize} />
+          {/* <Typography className={classes.lavshiText}>
+            LETS SPREAD <span></span>L{" "}
+            <span style={{ marginLeftLeft: "75px !important" }}>VE</span>
+            {""}
+            <span></span> TOGETHER
+          </Typography> */}
         </Box>
       )}
-      <div
-        style={{
-          backgroundPosition: "center",
-          width: "100%",
-          height: "80vh",
-          display: "flex",
-          justifyContent: "center",
-          alignItems: "center",
-          tabSize: "center",
-        }}
-        loading="lazy"
-      >
-        {isButtonVisible && (
-          <Button
-            size="small"
-            href="/screen-one"
-            variant="outlined"
-            sx={{
-              fontSize: "20px",
-              padding: "10px",
-              color: "#fff",
-              border: "1px solid #fff",
-              borderRadius: "8px",
-              fontFamily: "Poppins",
-
-              fontWeight: "700",
-              lineHeight: "20px",
-              letterSpacing: "0em",
-
-              // boxShadow: "1px 1px 2px 1px rgba(255,255,255,.8)",
-              "&:hover": {
-                border: "1px solid white",
-              },
-            }}
-            onClick={handleOpen}
-          >
-            CREATE ACCOUNT
-          </Button>
-        )}
+      <div className={classes.btnContainer} loading="lazy">
+        <Button
+          size="small"
+          href="/screen-one"
+          variant="outlined"
+          className={classes.btn}
+          onClick={handleOpen}
+        >
+          CREATE ACCOUNT
+        </Button>
       </div>
     </Container>
   );

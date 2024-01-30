@@ -1,16 +1,21 @@
-import React, { useState } from 'react';
-import { GoogleMap, LoadScript, DirectionsService, DirectionsRenderer } from '@react-google-maps/api';
-import { Container, Button } from '@mui/material';
+import React, { useState } from "react";
+import {
+  GoogleMap,
+  LoadScript,
+  DirectionsService,
+  DirectionsRenderer,
+} from "@react-google-maps/api";
+import { Container, Button } from "@mui/material";
 
 const containerStyle = {
-  width: '100%',
-  height: '500px',
+  width: "100%",
+  height: "90vh",
 };
 
 const center = {
-    lat: 28.628454,
-    lng: 77.376945,
-  };
+  lat: 28.628454,
+  lng: 77.376945,
+};
 
 const origin = { lat: 28.628454, lng: 77.376945 };
 const destination = { lat: 37.3382, lng: -121.8863 };
@@ -21,8 +26,30 @@ const MapWithDirection = () => {
   const directionsOptions = {
     origin: origin,
     destination: destination,
-    travelMode: 'DRIVING',
+    travelMode: "DRIVING",
   };
+
+  const customStyles = [
+    {
+      featureType: "all",
+      elementType: "all",
+      stylers: [
+        { hue: "#ff00ff" }, // Change the hue of all elements to pink
+        { saturation: -100 }, // Desaturate all elements
+        { lightness: -20 }, // Reduce lightness for overall darkness
+      ],
+    },
+    {
+      featureType: "road",
+      elementType: "geometry",
+      stylers: [{ color: "#ff0000" }], // Set the road color to red
+    },
+    {
+      featureType: "labels.text.fill",
+      elementType: "labels.text.fill",
+      stylers: [{ color: "#ffffff" }], // Set the text color to white
+    },
+  ];
 
   const handleDirections = (response) => {
     if (response !== null) {
@@ -33,8 +60,13 @@ const MapWithDirection = () => {
   return (
     <Container>
       <LoadScript googleMapsApiKey="AIzaSyA7a5DifsvjpDm_bjzx5bcxIG18je4Xtmc">
-        <GoogleMap mapContainerStyle={containerStyle} center={center} zoom={12}
-        
+        <GoogleMap
+          mapContainerStyle={containerStyle}
+          center={center}
+          zoom={12}
+          options={{
+            styles: customStyles,
+          }}
         >
           {directions && <DirectionsRenderer directions={directions} />}
           <DirectionsService
@@ -46,7 +78,7 @@ const MapWithDirection = () => {
           variant="contained"
           color="primary"
           onClick={() => {
-            const map = document.querySelector('.gm-fullscreen-control');
+            const map = document.querySelector(".gm-fullscreen-control");
             map.click();
           }}
         >

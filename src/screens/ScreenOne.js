@@ -1,15 +1,24 @@
 import React, { useState } from "react";
-import { Box, Button, Container, Grid, Modal, Typography } from "@mui/material";
+import {
+  Box,
+  Button,
+  Container,
+  Grid,
+  Modal,
+  Typography,
+  useMediaQuery,
+} from "@mui/material";
 import appBtn from "../assets/appBtn.png";
 import img from "../assets/home.png";
 import appleIcon from "../assets/appleIcon.png";
 import googleIcon from "../assets/googleIcon.png";
 import facebookIcon from "../assets/facebookIcon.png";
-
+import { useTheme } from "@mui/material/styles";
 import { makeStyles } from "@material-ui/core";
 import HomeIcon from "../assets/homeIcon.png";
 import { Link, useNavigate } from "react-router-dom";
 import Header from "../components/Header";
+import Loader from "./Loader";
 const useStyles = makeStyles((theme) => ({
   btnContainer: {
     alignItems: "center",
@@ -27,8 +36,32 @@ const useStyles = makeStyles((theme) => ({
     fontSize: "15px !important",
     border: "1px solid white !important",
     width: "300px !important",
+    "@media (max-width: 480px)": {
+      marginLeft: "0% !important",
+      width: "100% !important",
+      fontSize: "10px !important",
+    },
+    "@media (max-width: 768px)": {
+      marginLeft: "0% !important",
+      width: "100% !important",
+      fontSize: "12px !important",
+    },
   },
-
+  typoOne: {
+    fontWeight: 600,
+    color: "#fff !important",
+    fontSize: "35px !important",
+  },
+  typoTwo: {
+    textAlign: "center !important",
+    mt: "10px !important",
+    color: "#fff !important",
+    fontSize: "15px !important",
+    padding: " 8px 45px 8px 45px !important",
+    fontFamily: " Poppins !important",
+    fontWeight: 500,
+    lineHeight: "23px !important",
+  },
   imageContainer: {
     display: "flex",
     justifyContent: "space-between",
@@ -78,63 +111,92 @@ const useStyles = makeStyles((theme) => ({
     pointer: "none",
     marginLeft: "10%",
   },
+  innerContainer: {
+    position: "absolute !important",
+    width: 400,
+    bgcolor: "background.paper !important",
+    border: "1px solid #fff !important",
+    boxShadow: "24 !important",
+    padding: "10px !important",
+    top: "54% !important",
+    left: "50% !important",
+    transform: "translate(-50%, -50%) !important",
+    display: "flex !important",
+    flexDirection: "column !important",
+    alignItems: "center !important",
+    background: "transparent !important",
+    borderRadius: "10px !important",
+    [theme.breakpoints.down("xs")]: {
+      width: 360,
+      border: "0px solid #fff !important",
+      "& button": { display: "none" },
+    },
+    "@media (max-width: 768px)": {
+      /* Adjust styles for screens up to 768px wide */
+      width: "300px",
+      // padding: "20px",
+      /* Add more responsive styles as needed */
+    },
+
+    "@media (max-width: 480px)": {
+      /* Adjust styles for screens up to 480px wide */
+      width: "250px",
+      padding: "20px",
+      /* Add more responsive styles as needed */
+    },
+  },
+  pText: {
+    color: "white !important",
+    padding: "0px !important",
+    fontFamily: " Poppins !important",
+    fontSize: "15px !important",
+    fontWeight: 700,
+    lineHeight: "23px !important",
+    letterSpacing: "0em !important",
+  },
 }));
 const ScreenOne = ({ isDisabled }) => {
-  let navigate = useNavigate();
+  const theme = useTheme();
   const classes = useStyles();
-  const isTabDisabled = true;
-  const [login, setLogin] = useState(false);
+  const navigate = useNavigate();
+
+  const [isLoading, setIsLoading] = useState(false);
+  const [selectedProvider, setSelectedProvider] = useState(null);
   const handleClose = () => {
     // setButtonVisibility(true);
   };
-  return (
-    <Container
-      maxWidth="false"
-      disableGutters
-      sx={{
-        p: { xs: 2, sm: 5, md: 2 },
-        background: `url(${img}) center center/cover`,
-        minHeight: "100vh",
-      }}
-    >
-      <Box
-        sx={{ display: "flex", flexDirection: "column" }}
-        // className={classes.disabledTab}
-      >
-        <Header
-          style={
-            true
-              ? {
-                  filter: "blur(4px) !important",
-                  pointerEvents: "none !important",
-                  opacity: 0.2,
-                  background: "blue !important",
-                  width: "100%",
-                }
-              : ""
-          }
-          disabled="true"
-        />
-      </Box>
+  const handleConnectClick = (provider) => {
+    if (!isLoading && provider !== selectedProvider) {
+      setIsLoading(true);
 
-      <Box
-        sx={{
-          position: "absolute",
-          width: 400,
-          bgcolor: "background.paper",
-          border: "1px solid #fff",
-          boxShadow: 24,
-          p: 2,
-          top: "54%",
-          left: "50%",
-          transform: "translate(-50%, -50%)",
-          display: "flex",
-          flexDirection: "column",
-          alignItems: "center",
-          background: "transparent",
-          borderRadius: "10px",
-        }}
-      >
+      // Simulate an asynchronous operation (e.g., API call) before navigation
+      setTimeout(() => {
+        setSelectedProvider(provider);
+        setIsLoading(false);
+        navigate("/screen-two");
+      }, 1000);
+    }
+  };
+  const renderConnectButton = (provider, label, icon) => (
+    <Button
+      variant="outlined"
+      className={classes.btn}
+      fullWidth
+      onClick={() => handleConnectClick(provider)}
+      disabled={isLoading || selectedProvider === provider}
+    >
+      <img src={icon} alt="" style={{ marginRight: "12px" }} />
+      {label}
+    </Button>
+  );
+
+  const renderContent = () => {
+    if (isLoading) {
+      return <Loader />;
+    }
+
+    return (
+      <Box className={classes.innerContainer}>
         <div
           style={{
             display: "flex",
@@ -159,90 +221,34 @@ const ScreenOne = ({ isDisabled }) => {
           </button>
         </div>
 
-        <img src={HomeIcon} alt="" style={{ marginTop: "-20px" }} />
-        <Typography sx={{ fontWeight: 600, color: "#fff", fontSize: "35px" }}>
-          GET STARTED
-        </Typography>
-        <Typography
-          variant="h6"
-          sx={{
-            textAlign: "center",
-            mt: "10px",
-            color: "#fff",
-            fontSize: "15px",
-            padding: " 8px 45px 8px 45px",
-            fontFamily: " Poppins",
-            fontWeight: 500,
-            lineHeight: "23px",
-          }}
-        >
+        <img
+          src={HomeIcon}
+          alt=""
+          style={{ marginTop: "-20px", width: "100px", height: "40px" }}
+        />
+        <Typography className={classes.typoOne}>GET STARTED</Typography>
+        <Typography variant="h6" className={classes.typoTwo}>
           By clicking Log in, You agree to our terms. Learn how we process your
           data in our Privacy Policy and cookie policy.
         </Typography>
 
         <Grid container spacing={2} sx={{ padding: "0 30px 5px 30px" }}>
           <Grid item xs={12} className={classes.btnContainer}>
-            <Button
-              variant="outlined"
-              className={classes.btn}
-              fullWidth
-              href="/screen-two"
-            >
-              <img src={appleIcon} alt="" style={{ marginRight: "12px" }} />{" "}
-              Connect with Apple
-            </Button>
+            {renderConnectButton("apple", "Connect with Apple", appleIcon)}
           </Grid>
           <Grid item xs={12} className={classes.btnContainer}>
-            <Button
-              fullWidth
-              variant="outlined"
-              className={classes.btn}
-              href="/screen-two"
-            >
-              <img src={googleIcon} alt="" style={{ marginRight: "12px" }} />{" "}
-              Connect with Google
-            </Button>
+            {renderConnectButton("google", "Connect with Google", googleIcon)}
           </Grid>
           <Grid item xs={12} className={classes.btnContainer}>
-            <Button
-              fullWidth
-              href="/screen-two"
-              variant="outlined"
-              className={classes.btn}
-              // sx={{ marginTop: "10px", padding: "10px", fontSize: "15px" }}
-            >
-              <img src={facebookIcon} alt="" style={{ marginRight: "12px" }} />
-              Connect with Facebook
-            </Button>
+            {renderConnectButton(
+              "facebook",
+              "Connect with Facebook",
+              facebookIcon
+            )}
           </Grid>
         </Grid>
-        <p
-          style={{
-            color: "white",
-            padding: "10px 0 0 0",
-            fontFamily: " Poppins",
-            fontSize: "15px",
-            fontWeight: 700,
-            lineHeight: "23px",
-            letterSpacing: "0em",
-            // text-align: left;
-
-            margin: 0,
-          }}
-        >
-          Trouble Getting log in ?
-        </p>
-        <p
-          style={{
-            color: "white",
-            padding: "0px",
-            fontFamily: " Poppins",
-            fontSize: "15px",
-            fontWeight: 700,
-            lineHeight: "23px",
-            letterSpacing: "0em",
-          }}
-        >
+        <p className={classes.pText}>Trouble Getting log in ?</p>
+        <p className={classes.pText} style={{ marginTop: "-10px" }}>
           Get the app!
         </p>
         <button
@@ -260,6 +266,23 @@ const ScreenOne = ({ isDisabled }) => {
           />
         </button>
       </Box>
+    );
+  };
+
+  return (
+    <Container
+      maxWidth="false"
+      disableGutters
+      sx={{
+        p: { xs: 2, sm: 5, md: 2 },
+        background: `url(${img}) center center/cover`,
+        minHeight: "100vh",
+      }}
+    >
+      <Box sx={{ display: "flex", flexDirection: "column" }}>
+        <img src={HomeIcon} alt="" style={{ width: "125px", height: "50px" }} />
+      </Box>
+      {renderContent()}
     </Container>
   );
 };

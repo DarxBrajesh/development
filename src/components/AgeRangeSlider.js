@@ -1,6 +1,6 @@
-import React,{useState} from 'react';
-import Box from '@mui/material/Box';
-import Slider from '@mui/material/Slider';
+import React, { useState } from "react";
+import Box from "@mui/material/Box";
+import Slider from "@mui/material/Slider";
 
 function valuetext(value) {
   return `${value}°C`;
@@ -8,7 +8,7 @@ function valuetext(value) {
 
 const minDistance = 10;
 
- function AgeRangeSlider() {
+function AgeRangeSlider() {
   const [value1, setValue1] = useState([20, 37]);
 
   const handleChange1 = (event, newValue, activeThumb) => {
@@ -46,22 +46,14 @@ const minDistance = 10;
   return (
     <Box sx={{ width: 280 }}>
       <Slider
-        getAriaLabel={() => 'Minimum distance'}
+        getAriaLabel={() => "Minimum distance"}
         value={value1}
         onChange={handleChange1}
         valueLabelDisplay="auto"
         getAriaValueText={valuetext}
         disableSwap
-        sx={{color:'#df2066'}}
+        sx={{ color: "#fff" }}
       />
-      {/* <Slider
-        getAriaLabel={() => 'Minimum distance shift'}
-        value={value2}
-        onChange={handleChange2}
-        valueLabelDisplay="auto"
-        getAriaValueText={valuetext}
-        disableSwap
-      /> */}
     </Box>
   );
 }

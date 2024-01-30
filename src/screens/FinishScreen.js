@@ -127,7 +127,8 @@ const LocationScreen = () => {
       }}
     >
       <Box sx={{ display: "flex", flexDirection: "column" }}>
-        <Header />
+        <img src={HomeIcon} alt="" style={{ width: "100px", height: "40px" }} />
+        {/* <Header /> */}
       </Box>
       <Box
         sx={{
@@ -185,13 +186,40 @@ const LocationScreen = () => {
             xs={12}
             sx={{
               display: "block",
-              marginLeft: "55px",
+              marginLeft: "35px",
               marginTop: "15px",
             }}
           >
-            <img src={Img1} alt="" />
+            <p
+              style={{
+                color: "#fff",
+                fontSize: "12px",
+                marginTop: "10px",
+              }}
+            >
+              Dummy Information For Location Privacy In Location
+            </p>
+            <p
+              style={{
+                color: "#fff",
+                fontSize: "12px",
+                marginTop: "10px",
+              }}
+            >
+              Dummy Information For Location Privacy In Location
+            </p>
+            <p
+              style={{
+                color: "#fff",
+                fontSize: "12px",
+                marginTop: "10px",
+              }}
+            >
+              Dummy Information For Location Privacy In Location
+            </p>
+            {/* <img src={Img1} alt="" />
             <img src={Img2} alt="" />
-            <img src={Img3} alt="" />
+            <img src={Img3} alt="" /> */}
           </Grid>
           <Grid
             item
@@ -206,7 +234,8 @@ const LocationScreen = () => {
             <Button
               variant="outlined"
               className={classes.btn}
-              // onClick={routeChange}
+              href="/dashboard"
+              // onClick={locationOpen}
               sx={{ width: "80%" }}
               size="small"
             >

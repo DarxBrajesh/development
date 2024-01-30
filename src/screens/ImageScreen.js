@@ -31,6 +31,17 @@ const useStyles = makeStyles((theme) => ({
     fontSize: "15px !important",
     border: "1px solid white !important",
     width: "200px !important",
+    "@media (max-width: 768px)": {
+      width: "100% !important",
+      marginLeft: "0 !important",
+      marginTop: "30px !important",
+    },
+
+    "@media (max-width: 480px)": {
+      width: "100% !important",
+      marginLeft: "0 !important",
+      marginTop: "30px !important",
+    },
   },
   imageContainer: {
     display: "flex",
@@ -40,14 +51,75 @@ const useStyles = makeStyles((theme) => ({
   imageCard: {
     width: "100%",
     marginBottom: theme.spacing(2),
-    // border: "2px solid #fff",
+    border: "2px solid #fff !important",
     background: "transparent !important",
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "centet",
+    borderStyle: "dashed !important",
   },
   cardContent: {
     padding: "0px !important",
     // border: "1px solid #fff",
     border: "none",
     height: "100%",
+    width: "100% !important",
+    position: "relative !important",
+    "@media (max-width: 768px)": {
+      width: "70% !important",
+    },
+
+    "@media (max-width: 480px)": {
+      width: "70% !important",
+    },
+  },
+  innerContainer: {
+    position: "absolute !important",
+    width: 400,
+    bgcolor: "background.paper !important",
+    border: "1px solid #fff !important",
+    boxShadow: "24 !important",
+    padding: "10px !important",
+    top: "54% !important",
+    left: "50% !important",
+    transform: "translate(-50%, -50%) !important",
+    display: "flex !important",
+    flexDirection: "column !important",
+    alignItems: "center !important",
+    background: "transparent !important",
+    borderRadius: "10px !important",
+    [theme.breakpoints.down("xs")]: {
+      width: 360,
+      border: "0px solid #fff !important",
+      "& button": { display: "none" },
+      "& p": { display: "none" },
+    },
+    "@media (max-width: 768px)": {
+      /* Adjust styles for screens up to 768px wide */
+      width: "300px",
+      // padding: "20px",
+      /* Add more responsive styles as needed */
+    },
+
+    "@media (max-width: 480px)": {
+      /* Adjust styles for screens up to 480px wide */
+      width: "250px",
+      padding: "20px",
+      /* Add more responsive styles as needed */
+    },
+  },
+  plusBtn: {
+    width: "100% !important",
+    fontSize: "56px !important",
+    padding: "0px !important",
+    color: "white !important",
+    "@media (max-width: 768px)": {
+      width: "100% !important",
+    },
+
+    "@media (max-width: 480px)": {
+      width: "100% !important",
+    },
   },
   inputField: {
     color: "white !important",
@@ -80,17 +152,11 @@ const initialValues = {
 };
 const ImageScreen = () => {
   let navigate = useNavigate();
-  const [alignment, setAlignment] = React.useState("web");
-  const classes = useStyles();
-  const [open, setOpen] = useState(false);
-  const [age, setAge] = React.useState("");
-  const [images, setImages] = useState(Array(4).fill(""));
 
-  const toggaleChange = (event, newAlignment) => {
-    setAlignment(newAlignment);
-  };
+  const classes = useStyles();
+  const [images, setImages] = useState(Array(8).fill(""));
+
   const handleClose = () => {
-    setOpen(false);
     // setButtonVisibility(true);
   };
   const { values, errors, handleBlur, handleChange, handleSubmit, touched } =
@@ -123,38 +189,23 @@ const ImageScreen = () => {
       }}
     >
       <Box sx={{ display: "flex", flexDirection: "column" }}>
-        <Header />
+        <img src={HomeIcon} alt="" style={{ width: "125px", height: "50px" }} />
+        {/* <Header /> */}
       </Box>
-      <Box
-        sx={{
-          position: "absolute",
-          width: 400,
-          bgcolor: "background.paper",
-          border: "1px solid #fff",
-          boxShadow: 24,
-          p: 4,
-          top: "50%",
-          left: "50%",
-          transform: "translate(-50%, -50%)",
-          display: "flex",
-          flexDirection: "column",
-          alignItems: "center",
-          background: "transparent",
-          borderRadius: "10px",
-          // borderStyle: "dashed",
-        }}
-      >
+      <Box className={classes.innerContainer}>
         <div
           style={{
             display: "flex",
             // flexDirection: "column",
             justifyContent: "space-between",
             // alignItems: "flex-end",
-            width: "400px",
+            width: "100%",
             backgroundColor: "transparent",
           }}
         >
-          <p style={{ color: "white" }}>Add your best photo</p>
+          <p style={{ color: "white", marginLeft: "10px" }}>
+            Add your best photo
+          </p>
           <button
             onClick={handleClose}
             style={{
@@ -172,8 +223,12 @@ const ImageScreen = () => {
         {/* <img src={HomeIcon} alt="" style={{ marginTop: "-20px" }} /> */}
         <form onSubmit={handleSubmit} sx={{ mt: 1 }}>
           <Grid
+            container
+            spacing={1}
             sx={{
               display: "flex",
+              justifyContent: "center",
+              alignItems: "center",
               width: "100%",
               padding: "10px",
             }}
@@ -181,26 +236,29 @@ const ImageScreen = () => {
             {images.map((image, index) => (
               <Grid
                 item
-                xs={5}
+                xs={6}
+                md={3}
                 key={index}
                 sx={{
                   display: "block",
                   width: "100%",
-                  ml: 1,
                 }}
               >
                 <Card className={classes.imageCard}>
-                  <CardMedia
-                    component="img"
-                    height="120"
-                    image={image}
-                    style={{
-                      border: "1px solid #fff",
-                      width: "100px",
-                      borderRadius: "0px",
-                      borderStyle: "dashed",
-                    }}
-                  />
+                  {image === "" ? (
+                    ""
+                  ) : (
+                    <CardMedia
+                      component="img"
+                      height="100"
+                      // width="100"
+                      image={image}
+                      style={{
+                        background: "blue !important",
+                        width: "100%",
+                      }}
+                    />
+                  )}
 
                   <CardContent className={classes.cardContent}>
                     <input
@@ -214,20 +272,7 @@ const ImageScreen = () => {
                       {image !== "" ? (
                         ""
                       ) : (
-                        <Button
-                          component="span"
-                          style={{
-                            position: "absolute",
-                            width: "22%",
-                            fontSize: "56px",
-                            marginTop: "-120px",
-                            padding: "0px",
-                            border: "1px solid #fff",
-                            height: "23%",
-                            borderStyle: "dashed !important",
-                            color: "white",
-                          }}
-                        >
+                        <Button component="span" className={classes.plusBtn}>
                           +
                         </Button>
                       )}
@@ -237,71 +282,7 @@ const ImageScreen = () => {
               </Grid>
             ))}
           </Grid>
-          <Grid
-            sx={{
-              display: "flex",
-              width: "100%",
-              padding: "10px",
-            }}
-          >
-            {images.map((images, indexs) => (
-              <Grid
-                item
-                xs={5}
-                key={indexs}
-                sx={{
-                  display: "block",
-                  width: "100%",
-                  ml: 1,
-                }}
-              >
-                <Card className={classes.imageCard}>
-                  <CardMedia
-                    component="img"
-                    height="120"
-                    image={images}
-                    style={{
-                      border: "1px solid #fff",
-                      width: "100px",
-                      borderRadius: "0px",
-                      borderStyle: "dashed",
-                    }}
-                  />
 
-                  <CardContent className={classes.cardContent}>
-                    <input
-                      accept="image/*"
-                      style={{ display: "none", border: "none" }}
-                      id={`image-input-${indexs}`}
-                      type="file"
-                      onChange={(event) => handleImageChange(indexs, event)}
-                    />
-                    <label htmlFor={`image-input-${indexs}`}>
-                      {images !== "" ? (
-                        ""
-                      ) : (
-                        <Button
-                          component="span"
-                          style={{
-                            position: "absolute",
-                            width: "22%",
-                            fontSize: "56px",
-                            marginTop: "-120px",
-                            padding: "0px",
-                            height: "25%",
-                            borderStyle: "dashed",
-                            color: "white",
-                          }}
-                        >
-                          +
-                        </Button>
-                      )}
-                    </label>
-                  </CardContent>
-                </Card>
-              </Grid>
-            ))}
-          </Grid>
           <div
             style={{
               paddingLeft: "20px",
@@ -309,7 +290,7 @@ const ImageScreen = () => {
               marginTop: "-55px",
             }}
           >
-            <p style={{ color: "white" }}>Add your best photo</p>
+            <p style={{ color: "white" }}>Add atleast 3 photos</p>
           </div>
           <Button
             type="submit"

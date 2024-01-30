@@ -1,6 +1,6 @@
-import * as React from 'react';
-import Box from '@mui/material/Box';
-import Slider from '@mui/material/Slider';
+import * as React from "react";
+import Box from "@mui/material/Box";
+import Slider from "@mui/material/Slider";
 
 function valuetext(value) {
   return `${value}°C`;
@@ -8,19 +8,17 @@ function valuetext(value) {
 export default function LabeledValuesSlider() {
   return (
     <Box sx={{ width: 300 }}>
-    <Slider
-      aria-label="Temperature"
-      defaultValue={20}
-      sx={{color:'#df2066'}}
-      getAriaValueText={valuetext}
-      valueLabelDisplay="auto"
-      step={10}
-      marks
-      min={10}
-      max={110}
-    />
-   
-  </Box>
-);
+      <Slider
+        aria-label="Temperature"
+        defaultValue={20}
+        sx={{ color: "#fff" }}
+        getAriaValueText={valuetext}
+        valueLabelDisplay="auto"
+        step={10}
+        marks
+        min={10}
+        max={110}
+      />
+    </Box>
+  );
 }
-

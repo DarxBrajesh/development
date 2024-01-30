@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import {
   Box,
   Button,
@@ -22,7 +22,7 @@ import { Select, makeStyles } from "@material-ui/core";
 import HomeIcon from "../assets/homeIcon.png";
 import { Link, useNavigate } from "react-router-dom";
 import { profileForm } from "../schemas";
-import Header from "../components/Header";
+import Loader from "./Loader";
 const useStyles = makeStyles((theme) => ({
   btn: {
     background: "transparent !important",
@@ -34,24 +34,16 @@ const useStyles = makeStyles((theme) => ({
     border: "1px solid white !important",
     width: "200px !important",
     marginLeft: "25% !important",
+    "@media (max-width: 480px)": {
+      marginLeft: "0% !important",
+      width: "100% !important",
+    },
+    "@media (max-width: 768px)": {
+      marginLeft: "0% !important",
+      width: "100% !important",
+    },
   },
-  imageContainer: {
-    display: "flex",
-    justifyContent: "space-between",
-    marginTop: theme.spacing(2),
-  },
-  imageCard: {
-    width: "100%",
-    marginBottom: theme.spacing(2),
-    // border: "2px solid #fff",
-    background: "transparent !important",
-  },
-  cardContent: {
-    padding: "0px !important",
-    // border: "1px solid #fff",
-    border: "none",
-    height: "100%",
-  },
+
   inputField: {
     color: "black !important",
     borderRadius: "12px",
@@ -93,6 +85,31 @@ const useStyles = makeStyles((theme) => ({
       color: "blue !important",
     },
   },
+  innerContainer: {
+    position: "absolute !important",
+    width: 380,
+    bgcolor: "background.paper !important",
+    border: "1px solid #fff !important",
+    boxShadow: 24,
+    padding: "35px",
+    top: "53% !important",
+    left: "50% !important",
+    transform: "translate(-50%, -50%) !important",
+    display: "flex !important",
+    flexDirection: "column !important",
+    alignItems: "center !important",
+    background: "transparent !important",
+    borderRadius: "10px !important",
+    "@media (max-width: 768px)": {
+      width: "300px",
+      padding: "20px",
+    },
+
+    "@media (max-width: 480px)": {
+      width: "250px",
+      padding: "20px",
+    },
+  },
 }));
 const initialValues = {
   fullname: "",
@@ -107,14 +124,13 @@ const ScreenTwo = () => {
   const [social, setSocail] = useState(false);
   const [uploadImg, setUploadImg] = useState(false);
   const [open, setOpen] = useState(false);
-  const [age, setAge] = React.useState("");
+  const [isLoading, setIsLoading] = useState(true);
+  const [data, setData] = useState([""]);
+  const [genders, setGenders] = useState([]);
   const toggaleChange = (event, newAlignment) => {
     setAlignment(newAlignment);
   };
-  const handleClose = () => {
-    setOpen(false);
-    // setButtonVisibility(true);
-  };
+  const handleClose = () => {};
   const { values, errors, handleBlur, handleChange, handleSubmit, touched } =
     useFormik({
       initialValues: initialValues,
@@ -132,6 +148,36 @@ const ScreenTwo = () => {
     setUploadImg(true);
     setSocail(false);
   };
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        setIsLoading(true);
+
+        var requestOptions = {
+          method: "GET",
+          redirect: "follow",
+        };
+        fetch(
+          "https://luvsi.darxtechnologies.com/public/api/registrationProcess/getGender",
+          requestOptions
+        )
+          .then((response) => response.json())
+          .then((responseJson) => {
+            if (responseJson !== "") {
+              setGenders(responseJson.result);
+
+              setIsLoading(false);
+            } else {
+              alert("error in response");
+            }
+          });
+      } catch (error) {
+        console.error("Error fetching data:", error);
+        setIsLoading(false);
+      }
+    };
+    fetchData();
+  }, []);
   return (
     <Container
       maxWidth="false"
@@ -143,234 +189,133 @@ const ScreenTwo = () => {
       }}
     >
       <Box sx={{ display: "flex", flexDirection: "column" }}>
-        <Header />
+        <img src={HomeIcon} alt="" style={{ width: "125px", height: "50px" }} />
+        {/* <Header /> */}
       </Box>
-      <Box
-        sx={{
-          position: "absolute",
-          width: 380,
-          bgcolor: "background.paper",
-          border: "1px solid #fff",
-          boxShadow: 24,
-          p: 5,
-          top: "53%",
-          left: "50%",
-          transform: "translate(-50%, -50%)",
-          display: "flex",
-          flexDirection: "column",
-          alignItems: "center",
-          background: "transparent",
-          borderRadius: "10px",
-        }}
-      >
-        <form onSubmit={handleSubmit} sx={{ mt: 1 }}>
-          <label style={{ color: "white" }}>What is your first name ?</label>
-          <TextField
-            margin="normal"
-            fullWidth
-            id="name"
-            name="fullname"
-            placeholder="First Name"
-            inputProps={{ className: classes.inputField }}
-            onChange={handleChange}
-            onBlur={handleBlur}
-            value={values.fullname}
-            className={classes.inputField}
-            autoComplete="Full-name"
-            size="small"
-          />
-          {errors.fullname && touched.fullname ? (
-            <p className="form-error">{errors.fullname}</p>
-          ) : null}
-          {/* <label style={{ color: "white" }}>Email Address</label>
-          <TextField
-            margin="normal"
-            fullWidth
-            id="email"
-            placeholder="Email"
-            name="email"
-            inputProps={{ className: classes.inputField }}
-            className={classes.inputField}
-            onChange={handleChange}
-            onBlur={handleBlur}
-            value={values.email}
-            size="small"
-          />
-          {errors.email && touched.email ? (
-            <p className="form-error">{errors.email}</p>
-          ) : null} */}
-          <label style={{ color: "white", marginTop: "15px" }}>
-            Date of Birth
-          </label>
-          <TextField
-            type="date"
-            fullWidth
-            name="dob"
-            className={classes.inputField}
-            sx={{ mt: 2 }}
-            value={values.dob}
-            onChange={handleChange}
-            onBlur={handleBlur}
-            size="small"
-          />
-          {errors.dob && touched.dob ? (
-            <p className="form-error">{errors.dob}</p>
-          ) : null}
-          <Typography
-            component="h1"
-            variant="h6"
-            sx={{ fontSize: "15px", mt: 2, color: "white", marginTop: "15px" }}
-          >
-            Gender
-          </Typography>
-          {/* <RadioGroup
-            row
-            aria-labelledby="demo-row-radio-buttons-group-label"
-            name="row-radio-buttons-group"
-          >
-            <FormControlLabel
-              onChange={handleChange}
-              onBlur={handleBlur}
-              className={classes.genderField}
-              value="female"
-              name="gender"
-              style={{ color: "white" }}
-              control={<Radio />}
-              label="Female"
-              sx={{
-                "& .MuiSvgIcon-root": {
-                  fontSize: 28,
-                  color: "white",
-                },
-              }}
-            />
-            <FormControlLabel
-              onChange={handleChange}
-              onBlur={handleBlur}
-              className={classes.genderField}
-              value="male"
-              name="gender"
-              control={<Radio />}
-              label="Male"
-              style={{ color: "white" }}
-              sx={{
-                "& .MuiSvgIcon-root": {
-                  fontSize: 28,
-                  color: "white",
-                },
-              }}
-            />
-            <FormControlLabel
-              onChange={handleChange}
-              onBlur={handleBlur}
-              value="other"
-              className={classes.genderField}
-              name="gender"
-              style={{ color: "white" }}
-              control={<Radio />}
-              label="Other"
-              sx={{
-                "& .MuiSvgIcon-root": {
-                  fontSize: 28,
-                  color: "white",
-                },
-              }}
-            />
-          </RadioGroup>
-          {errors.gender && touched.gender ? (
-            <p className="form-error">{errors.gender}</p>
-          ) : null} */}
-          <Grid
-            container
-            spacing={2}
-            sx={{ marginBottom: "15px", marginTop: "5px" }}
-          >
-            <Grid item xs={4}>
-              <Button
-                style={{
-                  background: "transparent",
-                  color: "#fff",
-                  marginRight: "20px",
-                  // padding: "5px",
-                  width: "100px",
-                  borderRadius: "8px",
-                  border: "1px solid white",
-                  // boxShadow: "5px 5px 10px 2px rgba(0,0,0,.8)",
-                }}
-                variant="outlined"
-                size="small"
-              >
-                Male
-              </Button>
-            </Grid>
-            <Grid item xs={4}>
-              <Button
-                style={{
-                  background: "transparent",
-                  color: "#fff",
-                  marginRight: "20px",
-                  // padding: "5px",
-                  width: "100px",
-                  borderRadius: "8px",
-                  border: "1px solid white",
-                  // boxShadow: "5px 5px 10px 2px rgba(0,0,0,.8)",
-                }}
-                variant="outlined"
-                size="small"
-              >
-                Female
-              </Button>
-            </Grid>
-            <Grid item xs={4}>
-              <Button
-                style={{
-                  background: "transparent",
-                  color: "#fff",
-                  marginRight: "20px",
-                  // padding: "5px",
-                  width: "100px",
-                  borderRadius: "8px",
-                  border: "1px solid white",
 
-                  // boxShadow: "5px 5px 10px 2px rgba(0,0,0,.8)",
-                }}
-                variant="outlined"
-                size="small"
-              >
-                Other
-              </Button>
-            </Grid>
-          </Grid>
-          <label style={{ color: "white" }}>Your city you live in</label>
-          <TextField
-            margin="normal"
-            fullWidth
-            id="city"
-            placeholder="Your city"
-            name="city"
-            className={classes.inputField}
-            onChange={handleChange}
-            onBlur={handleBlur}
-            value={values.city}
-            autoComplete="city"
-            size="small"
-          />
-          {errors.city && touched.city ? (
-            <p className="form-error">{errors.city}</p>
-          ) : null}
-          <Button
-            // type="submit"
-            fullWidth
-            size="small"
-            onClick={userInformation}
-            variant="outlined"
-            className={classes.btn}
-            href="/screen-three"
-          >
-            Continue
-          </Button>
-        </form>
-      </Box>
+      {isLoading ? (
+        <div
+          style={{
+            width: "100px",
+            marginTop: "15%",
+            marginLeft: "45%",
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+            textAlign: "center",
+          }}
+        >
+          <Loader />
+        </div>
+      ) : (
+        <Box className={classes.innerContainer}>
+          <form onSubmit={handleSubmit} sx={{ mt: 1 }}>
+            <label style={{ color: "white" }}>What is your first name ?</label>
+            <TextField
+              margin="normal"
+              fullWidth
+              id="name"
+              name="fullname"
+              placeholder="First Name"
+              inputProps={{ className: classes.inputField }}
+              onChange={handleChange}
+              onBlur={handleBlur}
+              value={values.fullname}
+              className={classes.inputField}
+              autoComplete="Full-name"
+              size="small"
+            />
+            {errors.fullname && touched.fullname ? (
+              <p className="form-error">{errors.fullname}</p>
+            ) : null}
+
+            <label style={{ color: "white", marginTop: "15px" }}>
+              Date of Birth
+            </label>
+            <TextField
+              type="date"
+              fullWidth
+              name="dob"
+              className={classes.inputField}
+              sx={{ mt: 2 }}
+              value={values.dob}
+              onChange={handleChange}
+              onBlur={handleBlur}
+              size="small"
+            />
+            {errors.dob && touched.dob ? (
+              <p className="form-error">{errors.dob}</p>
+            ) : null}
+            <Typography
+              component="h1"
+              variant="h6"
+              sx={{
+                fontSize: "15px",
+                mt: 2,
+                color: "white",
+                marginTop: "15px",
+              }}
+            >
+              Gender
+            </Typography>
+            <RadioGroup
+              row
+              aria-labelledby="demo-row-radio-buttons-group-label"
+              name="row-radio-buttons-group"
+            >
+              {genders.map((gender) => (
+                <FormControlLabel
+                  key={gender.id}
+                  value={gender.gender_name.toLowerCase()}
+                  control={<Radio />}
+                  label={gender.gender_name}
+                  className="classes.genderField"
+                  style={{ color: "white" }}
+                  sx={{
+                    "& .MuiSvgIcon-root": {
+                      fontSize: 28,
+                      color: "white",
+                    },
+                  }}
+                  onChange={handleChange}
+                />
+              ))}
+            </RadioGroup>
+
+            {errors.gender && touched.gender ? (
+              <p className="form-error">{errors.gender}</p>
+            ) : null}
+            <label style={{ color: "white" }}>Your city you live in</label>
+            <TextField
+              margin="normal"
+              fullWidth
+              id="city"
+              placeholder="Your city"
+              name="city"
+              className={classes.inputField}
+              onChange={handleChange}
+              onBlur={handleBlur}
+              value={values.city}
+              autoComplete="city"
+              size="small"
+            />
+            {errors.city && touched.city ? (
+              <p className="form-error">{errors.city}</p>
+            ) : null}
+            <Button
+              // type="submit"
+              fullWidth
+              size="small"
+              onClick={userInformation}
+              variant="outlined"
+              className={classes.btn}
+              href="/screen-three"
+            >
+              Continue
+            </Button>
+          </form>
+        </Box>
+      )}
     </Container>
   );
 };

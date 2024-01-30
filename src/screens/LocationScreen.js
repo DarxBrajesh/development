@@ -127,7 +127,8 @@ const LocationScreen = () => {
       }}
     >
       <Box sx={{ display: "flex", flexDirection: "column" }}>
-        <Header />
+        <img src={HomeIcon} alt="" style={{ width: "100px", height: "40px" }} />
+        {/* <Header /> */}
       </Box>
       <Box
         sx={{

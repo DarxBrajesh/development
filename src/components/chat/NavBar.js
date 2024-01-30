@@ -10,17 +10,17 @@ const Navbar = () => {
   return (
     <div className="navbar">
       {/* <span className="logo">LogoChat</span> */}
-      <img src={HomeIcon} alt="" />
+      {/* <img src={HomeIcon} alt="" /> */}
       <div className="user">
-        <img
+        {/* <img
           src="https://e1.pxfuel.com/desktop-wallpaper/46/855/desktop-wallpaper-radhe-salman-khan-salman-khan.jpg"
           alt=""
           style={{ height: "50px", width: "50px", borderRadius: "50%" }}
-        />
+        /> */}
         {/* <span>{currentUser.displayName}</span> */}
-        <span>brajesh</span>
+        <span>Messages</span>
         {/* <button onClick={()=>signOut(auth)}>logout</button> */}
-        <button className="btn">logout</button>
+        {/* <button className="btn">logout</button> */}
       </div>
     </div>
   );

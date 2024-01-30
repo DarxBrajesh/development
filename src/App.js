@@ -27,6 +27,11 @@ import ScreenOne from "./screens/ScreenOne";
 import ScreenTwo from "./screens/ScreenTwo.js";
 import ScreenFourth from "./screens/ScreenFourth.js";
 import ImageScreen from "./screens/ImageScreen.js";
+import Sidebar from "./components/chat/SideBar.js";
+import DashboardScreen from "./screens/DashboardScreen.js";
+import Chat from "./components/chat/Home.js";
+import Payment from "./components/Payment.js";
+import UpgradePlans from "./components/UpgradePlans.js";
 function App() {
   return (
     <div className="App grid-container">
@@ -43,8 +48,8 @@ function App() {
           <Route exact path="/sign-in" element={<SignIn />} />
           <Route exact path="/profileform" element={<ProfileForm />} />
           <Route exact path="/profilesection" element={<ProfileSection />} />
-          <Route exact path="/dashboard" element={<Dashboard />} />
-          {/* <Route exact path="/" element={<ChatPreview />} /> */}
+          <Route exact path="/dashboard" element={<DashboardScreen />} />
+          <Route exact path="/chat" element={<Chat />} />
           <Route exact path="/screen-one" element={<ScreenOne />} />
           <Route exact path="/screen-two" element={<ScreenTwo />} />
           <Route exact path="/screen-three" element={<ImageScreen />} />
@@ -58,6 +63,8 @@ function App() {
           {/* <Route exact path="/safety-Tips" element={<SafetyTips />} /> */}
           <Route exact path="/privacy-policy" element={<Safetypolicy />} />
           <Route exact path="/community" element={<Community />} />
+          <Route exact path="/payment" element={<Payment />} />
+          <Route exact path="/upgrade-plans" element={<UpgradePlans />} />
           <Route
             exact
             path="/luvsiCard"

@@ -3,6 +3,7 @@ import React, { useEffect, useState } from "react";
 // import { ChatContext } from "../context/ChatContext";
 import { collection, addDoc, deleteDoc, getDocs } from "firebase/firestore";
 import { database } from "../../firebase";
+import img from "../../assets/msgbg.png";
 import Message from "./Message";
 
 const Messages = (props) => {
@@ -73,9 +74,11 @@ const Messages = (props) => {
     <>
       <div
         style={{
-          height: "80vh",
+          height: "78vh",
+          backgroundImage: `url(${img})`,
           // overflow: "scroll",
           overflow: "auto",
+          opacity: "0.1",
           scrollbarWidth: "none !important",
         }}
       >

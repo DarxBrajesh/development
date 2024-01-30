@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import {
   Box,
   Button,
@@ -18,6 +18,7 @@ import { Select, makeStyles } from "@material-ui/core";
 import HomeIcon from "../assets/homeIcon.png";
 import { Link, useNavigate } from "react-router-dom";
 import { profileForm } from "../schemas";
+import Loader from "./Loader";
 import Header from "../components/Header";
 const useStyles = makeStyles((theme) => ({
   btn: {
@@ -69,6 +70,33 @@ const useStyles = makeStyles((theme) => ({
       },
     },
   },
+  innerContainer: {
+    position: "absolute !important",
+    width: 500,
+    bgcolor: "background.paper !important",
+    border: "1px solid #fff !important",
+    boxShadow: 24,
+    padding: "35px",
+    top: "53% !important",
+    left: "50% !important",
+    transform: "translate(-50%, -50%) !important",
+    display: "flex !important",
+    flexDirection: "column !important",
+    alignItems: "center !important",
+    background: "transparent !important",
+    borderRadius: "10px !important",
+    height: "530px !important",
+
+    "@media (max-width: 768px)": {
+      width: "300px",
+      padding: "20px",
+    },
+
+    "@media (max-width: 480px)": {
+      width: "250px",
+      padding: "20px",
+    },
+  },
 }));
 const initialValues = {
   fullname: "",
@@ -81,14 +109,30 @@ const ScreenFourth = () => {
   let navigate = useNavigate();
   const [alignment, setAlignment] = React.useState("web");
   const classes = useStyles();
-  const [open, setOpen] = useState(false);
-  const [age, setAge] = React.useState("");
-  const toggaleChange = (event, newAlignment) => {
-    setAlignment(newAlignment);
-  };
+
+  const [data, setData] = useState([""]);
+  const [isLoading, setIsLoading] = useState(true);
+  const [selectedAnswerTabs, setSelectedAnswerTabs] = useState([]);
+
   const handleClose = () => {
-    setOpen(false);
     // setButtonVisibility(true);
+  };
+  const handleToggleClick = (answerTabValue) => {
+    const isSelected = selectedAnswerTabs.includes(answerTabValue);
+    let updatedSelection = [];
+
+    if (isSelected) {
+      // If already selected, remove it from the selection
+      updatedSelection = selectedAnswerTabs.filter(
+        (tab) => tab !== answerTabValue
+      );
+    } else {
+      // If not selected, add it to the selection
+      updatedSelection = [...selectedAnswerTabs, answerTabValue];
+    }
+
+    setSelectedAnswerTabs(updatedSelection); // Update selected answer tabs
+    console.log("Selected Values:", updatedSelection); // Log selected values
   };
   const { values, errors, handleBlur, handleChange, handleSubmit, touched } =
     useFormik({
@@ -102,6 +146,41 @@ const ScreenFourth = () => {
         action.resetForm();
       },
     });
+  console.log(selectedAnswerTabs, "selectedAnswerTabs...");
+  useEffect(() => {
+    // Function to fetch data from API
+    const fetchData = async () => {
+      try {
+        setIsLoading(true);
+        // Fetch data from API
+        var requestOptions = {
+          method: "GET",
+          redirect: "follow",
+        };
+
+        fetch(
+          "https://luvsi.darxtechnologies.com/public/api/registrationProcess/web/2",
+          requestOptions
+        )
+          .then((response) => response.json())
+          .then((responseJson) => {
+            if (responseJson !== "") {
+              setData(responseJson.result);
+              console.log(responseJson.result, "data...");
+              setIsLoading(false);
+            } else {
+              alert("error in response");
+            }
+          });
+      } catch (error) {
+        console.error("Error fetching data:", error);
+        setIsLoading(false);
+      }
+    };
+
+    // Call the fetchData function
+    fetchData();
+  }, []);
 
   return (
     <Container
@@ -114,467 +193,140 @@ const ScreenFourth = () => {
       }}
     >
       <Box sx={{ display: "flex", flexDirection: "column" }}>
-        <Header />
+        <img src={HomeIcon} alt="" style={{ width: "125px", height: "50px" }} />
+        {/* <Header /> */}
       </Box>
-      <Box
-        sx={{
-          position: "absolute",
-          width: 500,
-          bgcolor: "background.paper",
-          border: "1px solid #fff",
-          boxShadow: 24,
-          p: 4,
-          top: "54%",
-          left: "50%",
-          transform: "translate(-50%, -50%)",
-          display: "flex",
-          flexDirection: "column",
-          alignItems: "center",
-          background: "transparent",
-          borderRadius: "10px",
-          overflow: "hidden",
-          height: "530px",
-          // border: "2px solid blue",
-        }}
-      >
+      {isLoading ? (
         <div
           style={{
-            overflowY: "scroll",
-            WebkitOverflowScrolling: {
-              width: "0px",
-              display: "none",
-            },
+            width: "100px",
+            marginTop: "15%",
+            marginLeft: "45%",
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+            textAlign: "center",
           }}
         >
+          <Loader />
+        </div>
+      ) : (
+        <Box className={classes.innerContainer}>
           <div
             style={{
-              display: "flex",
-              flexDirection: "column",
-              justifyContent: "space-between",
-              alignItems: "flex-end",
-              width: "500px",
-              backgroundColor: "transparent",
+              overflowY: "scroll",
+              WebkitOverflowScrolling: {
+                width: "0px",
+                display: "none",
+              },
             }}
           >
-            <button
-              onClick={handleClose}
+            <div
               style={{
-                cursor: "pointer",
-                background: "none",
-                border: "none",
-                color: "white",
-                fontSize: "25px",
-                marginTop: "-2px",
+                display: "flex",
+                flexDirection: "column",
+                justifyContent: "space-between",
+                alignItems: "flex-end",
+                width: "100%",
+                backgroundColor: "transparent",
               }}
             >
-              X
-            </button>
-          </div>
-          <div
-            style={{
-              display: "flex",
-              flexDirection: "column",
-              justifyContent: "space-between",
-              alignItems: "flex-start",
-              width: "500px",
-              backgroundColor: "transparent",
-            }}
-          >
-            <p style={{ color: "white" }}>Looking for </p>
-          </div>
-
-          <ToggleButtonGroup
-            value={alignment}
-            exclusive={true}
-            onChange={toggaleChange}
-          >
-            <Grid container={true} spacing={1.25}>
-              {["A Relationship", "Nothing Serious", "I will find it"].map(
-                (v) => (
-                  <Grid key={v} item={true}>
-                    <ToggleButton
-                      value={v}
-                      key={v}
-                      sx={{
-                        border: "1px solid white",
-                        color: "white",
-                        borderRadius: "10px",
-                        textTransform: "none !important",
-                        padding: "5px 18px 5px 18px",
-                        fontFamily: "Poppins",
-                      }}
-                    >
-                      {v}
-                    </ToggleButton>
-                  </Grid>
-                )
-              )}
-            </Grid>
-          </ToggleButtonGroup>
-          <div
-            style={{
-              display: "flex",
-              flexDirection: "column",
-              justifyContent: "space-between",
-              alignItems: "flex-start",
-              textTransform: "none !important",
-              width: "500px",
-              backgroundColor: "transparent",
-            }}
-          >
-            <p style={{ color: "white" }}>How tall are you?</p>
-          </div>
-          <div
-            style={{
-              alignItems: "flex-start",
-              width: "500px",
-              backgroundColor: "transparent",
-            }}
-          >
-            <FormControl
-              sx={{
-                m: 1,
-                minWidth: 140,
-                background: "white",
-                padding: "0px 10px 0px 10px",
-                borderRadius: "10px",
-                textDecoration: "none",
-              }}
-              size="small"
-            >
-              <Select
-                labelId="demo-select-small-label"
-                id="demo-select-small"
-                value={age}
-                onChange={handleChange}
-                displayEmpty
-                inputProps={{ "aria-label": "Without label" }}
-                sx={{
+              <button
+                onClick={handleClose}
+                style={{
+                  cursor: "pointer",
+                  background: "none",
                   border: "none",
-                  background: "white",
-                  borderRadius: "10px",
-                  paddingLeft: "12px",
+                  color: "white",
+                  fontSize: "25px",
+                  marginTop: "-2px",
                 }}
               >
-                <MenuItem value="">
-                  <em>5</em>
-                </MenuItem>
-                <MenuItem value={5.5}>5.5</MenuItem>
-                <MenuItem value={6}>6</MenuItem>
-                <MenuItem value={6.5}>6.5</MenuItem>
-              </Select>
-            </FormControl>
-          </div>
-          <div
-            style={{
-              display: "flex",
-              flexDirection: "column",
-              justifyContent: "space-between",
-              alignItems: "flex-start",
-              width: "500px",
-              backgroundColor: "transparent",
-            }}
-          >
-            <p style={{ color: "white" }}>What excercise is your habit? </p>
-          </div>
+                X
+              </button>
+            </div>
 
-          <ToggleButtonGroup
-            value={alignment}
-            exclusive={true}
-            onChange={toggaleChange}
-          >
-            <Grid container={true} spacing={1.25}>
-              {[
-                "Occasional Excercise",
-                "Enough Cardio",
-                "All Excercise all time",
-              ].map((v) => (
-                <Grid key={v} item={true}>
-                  <ToggleButton
-                    value={v}
-                    key={v}
-                    sx={{
-                      border: "1px solid white",
+            <Box style={{ width: "100%", backgroundColor: "transparent" }}>
+              {data.map((questionData, index) => (
+                <div key={index}>
+                  <p style={{ color: "white" }}>{questionData.question_name}</p>
+                  {questionData.have_answers === 0 &&
+                    questionData.value_type === "string" && (
+                      <input
+                        type="text"
+                        placeholder={`Enter a value between ${questionData.value_range}`}
+                        style={{
+                          padding: "8px",
+                          borderRadius: "8px",
+                          border: "none",
+                          outline: "none",
+                        }}
+                      />
+                    )}
+                  <div
+                    style={{
+                      display: "flex",
+                      flexDirection: "column",
                       color: "white",
-                      borderRadius: "10px",
-                      textTransform: "none !important",
-                      padding: "5px 18px 5px 18px",
-                      fontFamily: "Poppins",
                     }}
                   >
-                    {v}
-                  </ToggleButton>
-                </Grid>
-              ))}
-            </Grid>
-          </ToggleButtonGroup>
-          <div
-            style={{
-              display: "flex",
-              flexDirection: "column",
-              justifyContent: "space-between",
-              alignItems: "flex-start",
-              width: "500px",
-              backgroundColor: "transparent",
-            }}
-          >
-            <p style={{ color: "white" }}>
-              Which answer best describe your cooking skills?
-            </p>
-          </div>
-
-          <ToggleButtonGroup
-            value={alignment}
-            exclusive={true}
-            onChange={toggaleChange}
-          >
-            <Grid container={true} spacing={1.25}>
-              {[
-                "I’m a microwave master",
-                "I’m a delivery expert",
-                "I know few good recepie",
-                "Im an excellent chef",
-              ].map((v) => (
-                <Grid key={v} item={true}>
-                  <ToggleButton
-                    value={v}
-                    key={v}
-                    sx={{
-                      border: "1px solid white",
-                      color: "white",
-                      borderRadius: "10px",
-                      textTransform: "none !important",
-                      padding: "5px 18px 5px 18px",
-                      fontFamily: "Poppins",
-                    }}
-                  >
-                    {v}
-                  </ToggleButton>
-                </Grid>
-              ))}
-            </Grid>
-          </ToggleButtonGroup>
-          <div
-            style={{
-              display: "flex",
-              flexDirection: "column",
-              justifyContent: "space-between",
-              alignItems: "flex-start",
-              width: "500px",
-              backgroundColor: "transparent",
-            }}
-          >
-            <p style={{ color: "white" }}>Your Ideal Vaccation </p>
-          </div>
-
-          <ToggleButtonGroup
-            value={alignment}
-            exclusive={true}
-            onChange={toggaleChange}
-          >
-            <Grid container={true} spacing={1.25}>
-              {[
-                "Hiking & Backpack",
-                "Deck hair & Sunscreen",
-                "Museum & Postcards",
-              ].map((v) => (
-                <Grid key={v} item={true}>
-                  <ToggleButton
-                    value={v}
-                    key={v}
-                    sx={{
-                      border: "1px solid white",
-                      color: "white",
-                      borderRadius: "10px",
-                      textTransform: "none !important",
-                      padding: "5px 18px 5px 18px",
-                      fontFamily: "Poppins",
-                    }}
-                  >
-                    {v}
-                  </ToggleButton>
-                </Grid>
-              ))}
-            </Grid>
-          </ToggleButtonGroup>
-          <div
-            style={{
-              display: "flex",
-              flexDirection: "column",
-              justifyContent: "space-between",
-              alignItems: "flex-start",
-              width: "500px",
-              backgroundColor: "transparent",
-            }}
-          >
-            <p style={{ color: "white" }}>What about your night life? </p>
-          </div>
-
-          <ToggleButtonGroup
-            value={alignment}
-            exclusive={true}
-            onChange={toggaleChange}
-          >
-            <Grid container={true} spacing={1.25}>
-              {[
-                "I’m in my bed by midnight",
-                "NI party in moderation",
-                "I’m a night owl",
-              ].map((v) => (
-                <Grid key={v} item={true}>
-                  <ToggleButton
-                    value={v}
-                    key={v}
-                    sx={{
-                      border: "1px solid white",
-                      color: "white",
-                      borderRadius: "10px",
-                      textTransform: "none !important",
-                      padding: "5px 18px 5px 18px",
-                      fontFamily: "Poppins",
-                    }}
-                  >
-                    {v}
-                  </ToggleButton>
-                </Grid>
-              ))}
-            </Grid>
-          </ToggleButtonGroup>
-          <div
-            style={{
-              display: "flex",
-              flexDirection: "column",
-              justifyContent: "space-between",
-              alignItems: "flex-start",
-              width: "500px",
-              backgroundColor: "transparent",
-            }}
-          >
-            <p style={{ color: "white" }}>Your opinion about smoking </p>
-          </div>
-
-          <ToggleButtonGroup
-            value={alignment}
-            exclusive={true}
-            onChange={toggaleChange}
-          >
-            <Grid container={true} spacing={1.25}>
-              {["A Relationship", "Nothing Serious", "I will find it"].map(
-                (v) => (
-                  <Grid key={v} item={true}>
-                    <ToggleButton
-                      value={v}
-                      key={v}
-                      sx={{
-                        border: "1px solid white",
-                        color: "white",
-                        borderRadius: "10px",
-                        textTransform: "none !important",
-                        padding: "5px 18px 5px 18px",
-                        fontFamily: "Poppins",
-                      }}
+                    <ToggleButtonGroup
+                      value={selectedAnswerTabs}
+                      exclusive={true}
+                      onChange={handleToggleClick}
                     >
-                      {v}
-                    </ToggleButton>
-                  </Grid>
-                )
-              )}
-            </Grid>
-          </ToggleButtonGroup>
-          <div
-            style={{
-              display: "flex",
-              flexDirection: "column",
-              justifyContent: "space-between",
-              alignItems: "flex-start",
-              width: "500px",
-              backgroundColor: "transparent",
-            }}
-          >
-            <p style={{ color: "white" }}>What about kids? </p>
-          </div>
-
-          <ToggleButtonGroup
-            value={alignment}
-            exclusive={true}
-            onChange={toggaleChange}
-          >
-            <Grid container={true} spacing={1.25}>
-              {["I love the ones I have", "Love every kid"].map((v) => (
-                <Grid key={v} item={true}>
-                  <ToggleButton
-                    value={v}
-                    key={v}
-                    sx={{
-                      border: "1px solid white",
-                      color: "white",
-                      borderRadius: "10px",
-                      textTransform: "none !important",
-                      padding: "5px 18px 5px 18px",
-                      fontFamily: "Poppins",
-                    }}
-                  >
-                    {v}
-                  </ToggleButton>
-                </Grid>
+                      <Grid container={true} spacing={1.25}>
+                        {questionData.answers &&
+                          questionData.answers.length > 0 &&
+                          questionData.answers.map((answer, answerIndex) => (
+                            <Grid key={answerIndex} item={true}>
+                              <ToggleButton
+                                key={answerIndex}
+                                value={answer.answer_option_values}
+                                sx={{
+                                  color: "white",
+                                  borderRadius: "10px",
+                                  textTransform: "none !important",
+                                  padding: "5px 18px 5px 18px",
+                                  fontFamily: "Poppins",
+                                  border: `1px solid ${
+                                    selectedAnswerTabs.includes(
+                                      answer.answer_option_values
+                                    )
+                                      ? "green"
+                                      : "white"
+                                  }`,
+                                }}
+                                onClick={() =>
+                                  handleToggleClick(answer.answer_option_values)
+                                }
+                                size="small"
+                              >
+                                {answer.answer_option_values}
+                              </ToggleButton>
+                            </Grid>
+                          ))}
+                      </Grid>
+                    </ToggleButtonGroup>
+                  </div>
+                </div>
               ))}
-            </Grid>
-          </ToggleButtonGroup>
-          <div
-            style={{
-              display: "flex",
-              flexDirection: "column",
-              justifyContent: "space-between",
-              alignItems: "flex-start",
-              width: "500px",
-              backgroundColor: "transparent",
-            }}
-          >
-            <p style={{ color: "white" }}>What are your Eating Habits? </p>
+            </Box>
           </div>
-
-          <ToggleButtonGroup
-            value={alignment}
-            exclusive={true}
-            onChange={toggaleChange}
-          >
-            <Grid container={true} spacing={1.25}>
-              {["A little of everything", "Vegetarian", "Junk Food"].map(
-                (v) => (
-                  <Grid key={v} item={true}>
-                    <ToggleButton
-                      value={v}
-                      key={v}
-                      sx={{
-                        border: "1px solid white",
-                        color: "white",
-                        borderRadius: "10px",
-                        textTransform: "none !important",
-                        padding: "5px 18px 5px 18px",
-                        fontFamily: "Poppins",
-                      }}
-                    >
-                      {v}
-                    </ToggleButton>
-                  </Grid>
-                )
-              )}
-            </Grid>
-          </ToggleButtonGroup>
-        </div>
-        <form onSubmit={handleSubmit} style={{ marginTop: "15px" }}>
-          <Button
-            // onClick={userInformation}
-            variant="outlined"
-            href="/location"
-            className={classes.btn}
-            sx={{ mt: 4, mb: 1 }}
-            size="small"
-          >
-            Continue
-          </Button>
-        </form>
-      </Box>
+          <form onSubmit={handleSubmit} style={{ marginTop: "15px" }}>
+            <Button
+              // onClick={userInformation}
+              variant="outlined"
+              href="/location"
+              className={classes.btn}
+              sx={{ mt: 4, mb: 1 }}
+              size="small"
+            >
+              Continue
+            </Button>
+          </form>
+        </Box>
+      )}
     </Container>
   );
 };

@@ -3,6 +3,7 @@ import Img from "../img/img.png";
 import Attach from "../img/attach.png";
 import { collection, addDoc, deleteDoc, getDocs } from "firebase/firestore";
 import { database } from "../../firebase";
+import SendRoundedIcon from "@mui/icons-material/SendRounded";
 // import { AuthContext } from "../context/AuthContext";
 // import { ChatContext } from "../context/ChatContext";
 // import {
@@ -86,7 +87,14 @@ const Input = () => {
     // setImg(null);
   };
   return (
-    <div className="input" style={{ borderTop: "2px solid red" }}>
+    <div
+      className="input"
+      style={{
+        border: "2px solid pink",
+        borderRadius: "25px",
+        padding: "0px 20px 0px 20px",
+      }}
+    >
       <input
         type="text"
         placeholder="Type something..."
@@ -108,7 +116,7 @@ const Input = () => {
         {/* <label htmlFor="file">
           <img src={Img} alt="" />
         </label> */}
-        <button
+        {/* <button
           onClick={handleSend}
           style={{
             background: "red",
@@ -119,7 +127,19 @@ const Input = () => {
           }}
         >
           Send
-        </button>
+        </button> */}
+        <SendRoundedIcon
+          onClick={handleSend}
+          style={{
+            background: "#df2066",
+            color: "#f1f1f1",
+            borderRadius: "50%",
+            padding: "5px",
+            width: "40px",
+            height: "40px",
+            cursor: "pointer",
+          }}
+        />
       </div>
     </div>
   );
